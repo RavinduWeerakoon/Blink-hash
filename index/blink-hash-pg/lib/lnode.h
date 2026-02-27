@@ -129,6 +129,12 @@ class lnode_hash_t : public lnode_t<Key_t, Value_t>{
 	static constexpr size_t cardinality = (LEAF_HASH_SIZE - sizeof(lnode_t<Key_t, Value_t>) - sizeof(lnode_t<Key_t, Value_t>*)) / sizeof(bucket_t<Key_t, Value_t>);
 
 	lnode_hash_t<Key_t, Value_t>* left_sibling_ptr;
+	enum convert_state_t : uint8_t {
+        CONVERT_NONE    = 0,
+        CONVERT_PENDING = 1,
+        CONVERT_ACTIVE  = 2,
+    };
+    std::atomic<uint8_t> convert_state{CONVERT_NONE};
 
     private:
 	bucket_t<Key_t, Value_t> bucket[cardinality];
