@@ -1,7 +1,116 @@
 #include "tree.h"
 
 namespace BLINK_HASH{
+#ifdef ASYNC_ADAPT
+template <typename Key_t, typename Value_t>
+void btree_t<Key_t, Value_t>::start_convert_workers(){
+	for(int i=0; i<CONVERT_WORKERS; i++){
+		convert_workers.emplace_back([this]{ convert_worker_loop(); });
+	}
+}
+template <typename Key_t, typename Value_t>
+void btree_t<Key_t, Value_t>::stop_convert_workers(){
+    {
+        std::lock_guard<std::mutex> lk(convert_mu);
+        convert_shutdown.store(true, std::memory_order_release);
+    }
+    convert_cv.notify_all();
+    for(auto& w : convert_workers)
+        w.join();
+}
+template <typename Key_t, typename Value_t>
+void btree_t<Key_t, Value_t>::signal_convert(node_t* node, uint64_t version){
+    auto hash_node = static_cast<lnode_hash_t<Key_t, Value_t>*>(
+                         static_cast<lnode_t<Key_t, Value_t>*>(node));
 
+    uint8_t expected = lnode_hash_t<Key_t, Value_t>::CONVERT_NONE;
+    if(!hash_node->convert_state.compare_exchange_strong(
+            expected,
+            lnode_hash_t<Key_t, Value_t>::CONVERT_PENDING,
+            std::memory_order_acq_rel,
+            std::memory_order_relaxed)){
+        return;  // already PENDING or ACTIVE
+    }
+
+    {
+        std::lock_guard<std::mutex> lk(convert_mu);
+        convert_queue.push({node, version});
+    }
+    convert_cv.notify_one();
+}
+template <typename Key_t, typename Value_t>
+void btree_t<Key_t, Value_t>::convert_worker_loop(){
+    while(true){
+        ConvertRequest req;
+        {
+            std::unique_lock<std::mutex> lk(convert_mu);
+            convert_cv.wait(lk, [this]{
+                return convert_shutdown.load(std::memory_order_relaxed)
+                       || !convert_queue.empty();
+            });
+            if(convert_shutdown.load(std::memory_order_relaxed)
+               && convert_queue.empty())
+                return;
+            req = convert_queue.front();
+            convert_queue.pop();
+        }
+
+        auto hash_leaf = static_cast<lnode_hash_t<Key_t, Value_t>*>(
+                             static_cast<lnode_t<Key_t, Value_t>*>(req.node));
+
+        // Transition PENDING to ACTIVE
+        uint8_t expected = lnode_hash_t<Key_t, Value_t>::CONVERT_PENDING;
+        if(!hash_leaf->convert_state.compare_exchange_strong(
+                expected,
+                lnode_hash_t<Key_t, Value_t>::CONVERT_ACTIVE,
+                std::memory_order_acq_rel)){
+            continue;  // another thread handled it, or node is obsolete
+        }
+
+        // Fresh version read to the hint version may be stale
+        bool need_restart = false;
+        auto version = (static_cast<node_t*>(hash_leaf))->get_version(need_restart);
+        if(need_restart){
+            // Node is locked or obsolete, reset and re-enqueue
+            hash_leaf->convert_state.store(
+                lnode_hash_t<Key_t, Value_t>::CONVERT_PENDING,
+                std::memory_order_release);
+            {
+                std::lock_guard<std::mutex> lk(convert_mu);
+                convert_queue.push(req);
+            }
+            convert_cv.notify_one();
+            std::this_thread::yield();
+            continue;
+        }
+
+        // Enter epoch and perform conversion
+        auto threadInfo = getThreadInfo();
+        {
+            EpocheGuard guard(threadInfo);
+            auto ret = convert(
+                static_cast<lnode_t<Key_t, Value_t>*>(hash_leaf),
+                version,
+                threadInfo);
+
+            if(!ret){
+                // OLC conflict to reset to PENDING for retry
+                hash_leaf->convert_state.store(
+                    lnode_hash_t<Key_t, Value_t>::CONVERT_PENDING,
+                    std::memory_order_release);
+                {
+                    std::lock_guard<std::mutex> lk(convert_mu);
+                    convert_queue.push(req);
+                }
+                convert_cv.notify_one();
+                std::this_thread::yield();
+            }
+            // On success: node is now obsolete (marked for EBR deletion).
+      
+        }
+    }
+}
+#endif // ASYNC_ADAPT
 template <typename Key_t, typename Value_t>
 int btree_t<Key_t, Value_t>::check_height(){
     auto ret = utilization();

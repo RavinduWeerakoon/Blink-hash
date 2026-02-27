@@ -4,6 +4,8 @@
 
 namespace BLINK_HASH{
 
+
+
 template <typename Key_t, typename Value_t>
 inline void lnode_t<Key_t, Value_t>::write_unlock(){
     switch(type){
