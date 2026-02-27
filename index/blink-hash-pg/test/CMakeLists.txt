@@ -19,6 +19,25 @@ target_link_libraries(timestamp blinkhash pthread)
 add_executable(test_string test_string.cpp)
 target_link_libraries(test_string blinkhash pthread)
 
+# ---- Latency benchmark (sync baseline) ----
+add_executable(bench_range_latency_sync bench_range_latency.cpp)
+target_link_libraries(bench_range_latency_sync adapt pthread)
+
+# ---- Latency benchmark (async) ----
+add_executable(bench_range_latency_async bench_range_latency.cpp)
+target_link_libraries(bench_range_latency_async blinkhash_async pthread)
+
+# ---- Throughput benchmark (sync baseline) ----
+add_executable(bench_range_throughput_sync bench_range_throughput.cpp)
+target_link_libraries(bench_range_throughput_sync adapt pthread)
+
+# ---- Throughput benchmark (async) ----
+add_executable(bench_range_throughput_async bench_range_throughput.cpp)
+target_link_libraries(bench_range_throughput_async blinkhash_async pthread)
+
+# ---- Conversion counter (async only) ----
+add_executable(bench_convert_count bench_convert_count.cpp)
+target_link_libraries(bench_convert_count blinkhash_async pthread)
 ## factor analysis
 #add_executable(baseline_ timestamp.cpp)
 #target_link_libraries(baseline_ baseline pthread)

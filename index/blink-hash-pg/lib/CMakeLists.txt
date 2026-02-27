@@ -58,3 +58,11 @@ target_compile_definitions(blinkhash PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRIN
 target_link_libraries(blinkhash TBB::tbb)
 INSTALL(TARGETS blinkhash 
 	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
+
+add_library(blinkhash_async STATIC ${Blinkhash_SRC})
+target_compile_definitions(blinkhash_async PUBLIC
+    ${BLINKHASH_EXTRA_DEFS}
+    -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION -DASYNC_ADAPT)
+target_link_libraries(blinkhash_async TBB::tbb)
+INSTALL(TARGETS blinkhash_async
+    ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
