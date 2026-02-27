@@ -252,6 +252,19 @@ timestamp/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/build
 .PHONY : timestamp/fast
 
+#=============================================================================
+# Target rules for targets named test_string
+
+# Build rule for target.
+test_string: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_string
+.PHONY : test_string
+
+# fast build rule for target.
+test_string/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/build
+.PHONY : test_string/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -270,6 +283,7 @@ help:
 	@echo "... range"
 	@echo "... rdtsc"
 	@echo "... test"
+	@echo "... test_string"
 	@echo "... timestamp"
 .PHONY : help
 

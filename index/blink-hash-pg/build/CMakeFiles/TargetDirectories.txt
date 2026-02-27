@@ -17,6 +17,7 @@
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/rdtsc.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/mixed.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/timestamp.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_string.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/edit_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/rebuild_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/list_install_components.dir

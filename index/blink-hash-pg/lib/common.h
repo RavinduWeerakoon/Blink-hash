@@ -13,9 +13,11 @@ namespace BLINK_HASH{
 typedef uint64_t key64_t;
 typedef uint64_t value64_t;
 
-/* String key support — GenericKey<32> from blink-hash-str */
+/* String key support — GenericKey variants from bh_key.h */
 constexpr std::size_t KEY_LENGTH = BH_DEFAULT_KEY_LENGTH;  /* 32 */
-using StringKey = GenericKey<KEY_LENGTH>;
+using StringKey     = GenericKey<KEY_LENGTH>;
+using MediumKey     = GenericKey<BH_MEDIUM_KEY_LENGTH>;     /* 64 */
+using LongStringKey = GenericKey<BH_LONG_KEY_LENGTH>;       /* 128 */
 
 }
 #endif

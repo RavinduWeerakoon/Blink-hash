@@ -153,4 +153,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/rdtsc.dir/DependInfo.cmake"
   "test/CMakeFiles/mixed.dir/DependInfo.cmake"
   "test/CMakeFiles/timestamp.dir/DependInfo.cmake"
+  "test/CMakeFiles/test_string.dir/DependInfo.cmake"
   )

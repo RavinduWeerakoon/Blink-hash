@@ -113,6 +113,7 @@ test/all: test/CMakeFiles/range.dir/all
 test/all: test/CMakeFiles/rdtsc.dir/all
 test/all: test/CMakeFiles/mixed.dir/all
 test/all: test/CMakeFiles/timestamp.dir/all
+test/all: test/CMakeFiles/test_string.dir/all
 .PHONY : test/all
 
 # Recursive "codegen" directory target.
@@ -121,6 +122,7 @@ test/codegen: test/CMakeFiles/range.dir/codegen
 test/codegen: test/CMakeFiles/rdtsc.dir/codegen
 test/codegen: test/CMakeFiles/mixed.dir/codegen
 test/codegen: test/CMakeFiles/timestamp.dir/codegen
+test/codegen: test/CMakeFiles/test_string.dir/codegen
 .PHONY : test/codegen
 
 # Recursive "preinstall" directory target.
@@ -133,6 +135,7 @@ test/clean: test/CMakeFiles/range.dir/clean
 test/clean: test/CMakeFiles/rdtsc.dir/clean
 test/clean: test/CMakeFiles/mixed.dir/clean
 test/clean: test/CMakeFiles/timestamp.dir/clean
+test/clean: test/CMakeFiles/test_string.dir/clean
 .PHONY : test/clean
 
 #=============================================================================
@@ -334,7 +337,7 @@ test/CMakeFiles/mixed.dir/clean:
 test/CMakeFiles/timestamp.dir/all: lib/CMakeFiles/blinkhash.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=25,26 "Built target timestamp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=27,28 "Built target timestamp"
 .PHONY : test/CMakeFiles/timestamp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -351,13 +354,45 @@ timestamp: test/CMakeFiles/timestamp.dir/rule
 # codegen rule for target.
 test/CMakeFiles/timestamp.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=25,26 "Finished codegen for target timestamp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=27,28 "Finished codegen for target timestamp"
 .PHONY : test/CMakeFiles/timestamp.dir/codegen
 
 # clean rule for target.
 test/CMakeFiles/timestamp.dir/clean:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/clean
 .PHONY : test/CMakeFiles/timestamp.dir/clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/test_string.dir
+
+# All Build rule for target.
+test/CMakeFiles/test_string.dir/all: lib/CMakeFiles/blinkhash.dir/all
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/depend
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=25,26 "Built target test_string"
+.PHONY : test/CMakeFiles/test_string.dir/all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/test_string.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 10
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_string.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/test_string.dir/rule
+
+# Convenience name for target.
+test_string: test/CMakeFiles/test_string.dir/rule
+.PHONY : test_string
+
+# codegen rule for target.
+test/CMakeFiles/test_string.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=25,26 "Finished codegen for target test_string"
+.PHONY : test/CMakeFiles/test_string.dir/codegen
+
+# clean rule for target.
+test/CMakeFiles/test_string.dir/clean:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/clean
+.PHONY : test/CMakeFiles/test_string.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

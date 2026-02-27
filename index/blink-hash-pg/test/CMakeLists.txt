@@ -15,6 +15,10 @@ target_link_libraries(mixed blinkhash pthread)
 add_executable(timestamp timestamp.cpp)
 target_link_libraries(timestamp blinkhash pthread)
 
+# String key (GenericKey<32>) test — Phase 0 verification
+add_executable(test_string test_string.cpp)
+target_link_libraries(test_string blinkhash pthread)
+
 ## factor analysis
 #add_executable(baseline_ timestamp.cpp)
 #target_link_libraries(baseline_ baseline pthread)

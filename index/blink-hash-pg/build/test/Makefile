@@ -231,6 +231,20 @@ timestamp/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/build
 .PHONY : timestamp/fast
 
+# Convenience name for target.
+test/CMakeFiles/test_string.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_string.dir/rule
+.PHONY : test/CMakeFiles/test_string.dir/rule
+
+# Convenience name for target.
+test_string: test/CMakeFiles/test_string.dir/rule
+.PHONY : test_string
+
+# fast build rule for target.
+test_string/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/build
+.PHONY : test_string/fast
+
 mixed.o: mixed.cpp.o
 .PHONY : mixed.o
 
@@ -327,6 +341,30 @@ test.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/test.cpp.s
 .PHONY : test.cpp.s
 
+test_string.o: test_string.cpp.o
+.PHONY : test_string.o
+
+# target to build an object file
+test_string.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.o
+.PHONY : test_string.cpp.o
+
+test_string.i: test_string.cpp.i
+.PHONY : test_string.i
+
+# target to preprocess a source file
+test_string.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.i
+.PHONY : test_string.cpp.i
+
+test_string.s: test_string.cpp.s
+.PHONY : test_string.s
+
+# target to generate assembly for a file
+test_string.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.s
+.PHONY : test_string.cpp.s
+
 timestamp.o: timestamp.cpp.o
 .PHONY : timestamp.o
 
@@ -367,6 +405,7 @@ help:
 	@echo "... range"
 	@echo "... rdtsc"
 	@echo "... test"
+	@echo "... test_string"
 	@echo "... timestamp"
 	@echo "... mixed.o"
 	@echo "... mixed.i"
@@ -380,6 +419,9 @@ help:
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
+	@echo "... test_string.o"
+	@echo "... test_string.i"
+	@echo "... test_string.s"
 	@echo "... timestamp.o"
 	@echo "... timestamp.i"
 	@echo "... timestamp.s"

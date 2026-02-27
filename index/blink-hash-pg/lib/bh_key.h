@@ -83,9 +83,19 @@ struct GenericEqualityChecker {
     }
 };
 
-/* ── Default key length for string workloads ── */
+/* ── Standard key sizes ── */
 constexpr std::size_t BH_DEFAULT_KEY_LENGTH = 32;
-using StringKey = GenericKey<BH_DEFAULT_KEY_LENGTH>;
+constexpr std::size_t BH_MEDIUM_KEY_LENGTH  = 64;
+constexpr std::size_t BH_LONG_KEY_LENGTH    = 128;
+
+using StringKey     = GenericKey<BH_DEFAULT_KEY_LENGTH>;   /* 32 bytes  */
+using MediumKey     = GenericKey<BH_MEDIUM_KEY_LENGTH>;    /* 64 bytes  */
+using LongStringKey = GenericKey<BH_LONG_KEY_LENGTH>;      /* 128 bytes */
+
+/* ── Compile-time sanity checks ── */
+static_assert(sizeof(GenericKey<32>)  == 32,  "GenericKey<32> must be 32 bytes");
+static_assert(sizeof(GenericKey<64>)  == 64,  "GenericKey<64> must be 64 bytes");
+static_assert(sizeof(GenericKey<128>) == 128, "GenericKey<128> must be 128 bytes");
 
 /* ── Stream output (for debug prints) ── */
 template <std::size_t keySize>
