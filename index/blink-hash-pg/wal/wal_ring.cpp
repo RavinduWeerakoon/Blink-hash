@@ -11,6 +11,7 @@
 #elif defined(__APPLE__)
 #include <sys/mman.h>
 #endif
+#include <thread>
 
 namespace BLINK_HASH {
 namespace WAL {
@@ -34,23 +35,17 @@ RingBuffer::RingBuffer(size_t capacity)
     assert(is_power_of_two(capacity) && "capacity must be power-of-two");
     assert(capacity >= 2 * COMMIT_BLOCK && "need at least 2 blocks");
 
-    /*
-     * Allocate ring memory.  We use mmap so we can later add (to get the cpu level page controls)
-     * MAP_HUGETLB on Linux.  On macOS mmap is fine (no hugepages).
-     */
     void* p = ::mmap(nullptr, capacity, PROT_READ | PROT_WRITE,
                      MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     if (p == MAP_FAILED)
         std::abort();
     buf_ = static_cast<char*>(p);
 
-
-    size_t num_slots = capacity / COMMIT_BLOCK;
-    committed_ = new std::atomic<uint8_t>[num_slots];
-    for (size_t i = 0; i < num_slots; ++i)
+    num_commit_blocks_ = capacity / COMMIT_BLOCK;
+    committed_ = new std::atomic<uint8_t>[num_commit_blocks_];
+    for (size_t i = 0; i < num_commit_blocks_; ++i)
         committed_[i].store(0, std::memory_order_relaxed);
 }
-
 RingBuffer::~RingBuffer() {
     if (buf_)
         ::munmap(buf_, capacity_);
@@ -60,71 +55,71 @@ RingBuffer::~RingBuffer() {
 /* Producer: reserve*/
 
 uint64_t RingBuffer::reserve(size_t size) {
- 
-    uint64_t ticket;
+    uint64_t cur;
     for (;;) {
-        ticket = write_head_.fetch_add(size, std::memory_order_acq_rel);
+        cur = write_head_.load(std::memory_order_relaxed);
         uint64_t rh = read_head_.load(std::memory_order_acquire);
-        if (ticket + size - rh <= capacity_)
-            break;                 
 
-     
-        write_head_.fetch_sub(size, std::memory_order_acq_rel);
-        /* Yield to let the flusher make progress */
-#if defined(__x86_64__)
-        __builtin_ia32_pause();
-#elif defined(__aarch64__)
-        asm volatile("yield" ::: "memory");
-#endif
+        /* Check if there's enough space in the ring */
+        if (cur + size - rh > capacity_) {
+            /* Ring is full — back off and let consumer drain */
+            std::this_thread::yield();
+            continue;
+        }
+
+        /* Try to atomically claim [cur, cur+size) */
+        if (write_head_.compare_exchange_weak(
+                cur, cur + size,
+                std::memory_order_acq_rel,
+                std::memory_order_relaxed)) {
+            return cur;
+        }
+        /* CAS failed — another producer won. retry */
     }
-    return ticket;
 }
 
 /* Producer: commit  */
 
 void RingBuffer::commit(uint64_t offset, size_t size) {
-    /*
-     * We use store(1, release) so that the preceding memcpy
-     * (from ThreadBuf::flush) is visible to the flusher.
-     */
+    /* Step 1: Mark all blocks in [offset, offset+size) as committed */
     uint64_t first_block = offset / COMMIT_BLOCK;
     uint64_t last_block  = (offset + size - 1) / COMMIT_BLOCK;
-    size_t   num_slots   = capacity_ / COMMIT_BLOCK;
 
     for (uint64_t b = first_block; b <= last_block; ++b) {
-        size_t idx = b % num_slots;
+        size_t idx = b % num_commit_blocks_;
         committed_[idx].store(1, std::memory_order_release);
     }
 
-    /*
-     * Advance commit_head_ past all consecutively committed blocks.
-     * Only one CAS winner per slot contention is low because
-     * workers typically write to disjoint blocks.
-     */
-    uint64_t expected = first_block * COMMIT_BLOCK;
-    while (expected == commit_head_.load(std::memory_order_acquire)) {
-        size_t idx = (expected / COMMIT_BLOCK) % num_slots;
-        if (committed_[idx].load(std::memory_order_acquire) == 0)
+    /* Step 2: Try to advance commit_head_ past consecutive committed blocks */
+    for (;;) {
+        uint64_t ch = commit_head_.load(std::memory_order_acquire);
+
+        /* Don't advance past write_head_ */
+        uint64_t wh = write_head_.load(std::memory_order_acquire);
+        if (ch >= wh)
             break;
 
-        uint64_t next = expected + COMMIT_BLOCK;
-        if (commit_head_.compare_exchange_weak(expected, next,
-                std::memory_order_acq_rel, std::memory_order_acquire)) {
+        size_t idx = (ch / COMMIT_BLOCK) % num_commit_blocks_;
+        if (committed_[idx].load(std::memory_order_acquire) == 0)
+            break;      /* This block isn't committed yet. stop */
+
+        uint64_t next = ch + COMMIT_BLOCK;
+        if (commit_head_.compare_exchange_weak(
+                ch, next,
+                std::memory_order_acq_rel,
+                std::memory_order_acquire)) {
+            /* We advanced — clear the flag for reuse when ring wraps */
             committed_[idx].store(0, std::memory_order_release);
-            expected = next;
-        } else {
-            break;  
+            
         }
+        /* If CAS failed, another thread advanced it loop and retry */
     }
 }
+
 
 /* Consumer: peek */
 
 size_t RingBuffer::peek(const void** out_ptr) const {
-    /*
-     * the gap between read_head_ and commit_head_.  The data is guaranteed to be committed
-     * (all producers done with their memcpys).
-     */
     uint64_t rh = read_head_.load(std::memory_order_acquire);
     uint64_t ch = commit_head_.load(std::memory_order_acquire);
 
@@ -136,6 +131,7 @@ size_t RingBuffer::peek(const void** out_ptr) const {
     size_t phys_off = static_cast<size_t>(rh & mask_);
     size_t avail    = static_cast<size_t>(ch - rh);
 
+    /* Don't return data across the physical wrap boundary */
     size_t contig = capacity_ - phys_off;
     if (avail > contig)
         avail = contig;
@@ -152,11 +148,8 @@ void RingBuffer::advance(size_t size) {
 
 /* write_at (for ThreadBuf flush)  */
 
+
 void RingBuffer::write_at(uint64_t abs_offset, const void* data, size_t len) {
-    /*
-     * Write `len` bytes starting at absolute offset `abs_offset`.
-     * Handles wrap-around at the physical end of the buffer.
-     */
     size_t phys = static_cast<size_t>(abs_offset & mask_);
     size_t first_part = capacity_ - phys;
 

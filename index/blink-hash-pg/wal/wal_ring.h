@@ -68,7 +68,7 @@ private:
     alignas(64) std::atomic<uint64_t> commit_head_{0};
     alignas(64) std::atomic<uint64_t> read_head_{0};
 
-
+    size_t   num_commit_blocks_;
     std::atomic<uint8_t>*  committed_;  
 };
 
