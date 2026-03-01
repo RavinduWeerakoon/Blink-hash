@@ -315,6 +315,34 @@ bench_convert_count/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_convert_count.dir/build.make test/CMakeFiles/bench_convert_count.dir/build
 .PHONY : bench_convert_count/fast
 
+# Convenience name for target.
+test/CMakeFiles/test_wal_record.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_record.dir/rule
+.PHONY : test/CMakeFiles/test_wal_record.dir/rule
+
+# Convenience name for target.
+test_wal_record: test/CMakeFiles/test_wal_record.dir/rule
+.PHONY : test_wal_record
+
+# fast build rule for target.
+test_wal_record/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/build
+.PHONY : test_wal_record/fast
+
+# Convenience name for target.
+test/CMakeFiles/test_wal_ring.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_ring.dir/rule
+.PHONY : test/CMakeFiles/test_wal_ring.dir/rule
+
+# Convenience name for target.
+test_wal_ring: test/CMakeFiles/test_wal_ring.dir/rule
+.PHONY : test_wal_ring
+
+# fast build rule for target.
+test_wal_ring/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/build
+.PHONY : test_wal_ring/fast
+
 bench_convert_count.o: bench_convert_count.cpp.o
 .PHONY : bench_convert_count.o
 
@@ -513,6 +541,54 @@ test_string.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.s
 .PHONY : test_string.cpp.s
 
+test_wal_record.o: test_wal_record.cpp.o
+.PHONY : test_wal_record.o
+
+# target to build an object file
+test_wal_record.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/test_wal_record.cpp.o
+.PHONY : test_wal_record.cpp.o
+
+test_wal_record.i: test_wal_record.cpp.i
+.PHONY : test_wal_record.i
+
+# target to preprocess a source file
+test_wal_record.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/test_wal_record.cpp.i
+.PHONY : test_wal_record.cpp.i
+
+test_wal_record.s: test_wal_record.cpp.s
+.PHONY : test_wal_record.s
+
+# target to generate assembly for a file
+test_wal_record.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/test_wal_record.cpp.s
+.PHONY : test_wal_record.cpp.s
+
+test_wal_ring.o: test_wal_ring.cpp.o
+.PHONY : test_wal_ring.o
+
+# target to build an object file
+test_wal_ring.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/test_wal_ring.cpp.o
+.PHONY : test_wal_ring.cpp.o
+
+test_wal_ring.i: test_wal_ring.cpp.i
+.PHONY : test_wal_ring.i
+
+# target to preprocess a source file
+test_wal_ring.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/test_wal_ring.cpp.i
+.PHONY : test_wal_ring.cpp.i
+
+test_wal_ring.s: test_wal_ring.cpp.s
+.PHONY : test_wal_ring.s
+
+# target to generate assembly for a file
+test_wal_ring.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/test_wal_ring.cpp.s
+.PHONY : test_wal_ring.cpp.s
+
 timestamp.o: timestamp.cpp.o
 .PHONY : timestamp.o
 
@@ -559,6 +635,8 @@ help:
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_record"
+	@echo "... test_wal_ring"
 	@echo "... timestamp"
 	@echo "... bench_convert_count.o"
 	@echo "... bench_convert_count.i"
@@ -584,6 +662,12 @@ help:
 	@echo "... test_string.o"
 	@echo "... test_string.i"
 	@echo "... test_string.s"
+	@echo "... test_wal_record.o"
+	@echo "... test_wal_record.i"
+	@echo "... test_wal_record.s"
+	@echo "... test_wal_ring.o"
+	@echo "... test_wal_ring.i"
+	@echo "... test_wal_ring.s"
 	@echo "... timestamp.o"
 	@echo "... timestamp.i"
 	@echo "... timestamp.s"

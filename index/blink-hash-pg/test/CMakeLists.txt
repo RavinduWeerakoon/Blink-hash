@@ -39,6 +39,13 @@ target_link_libraries(bench_range_throughput_async blinkhash_async pthread)
 add_executable(bench_convert_count bench_convert_count.cpp)
 target_link_libraries(bench_convert_count blinkhash_async ${TBB_LIBRARIES})
 target_compile_definitions(bench_convert_count PRIVATE ADAPTATION ASYNC_ADAPT)
+
+# ---- Phase 1 WAL tests ----
+add_executable(test_wal_record test_wal_record.cpp)
+target_link_libraries(test_wal_record blinkhash_wal pthread)
+
+add_executable(test_wal_ring test_wal_ring.cpp)
+target_link_libraries(test_wal_ring blinkhash_wal pthread)
 ## factor analysis
 #add_executable(baseline_ timestamp.cpp)
 #target_link_libraries(baseline_ baseline pthread)

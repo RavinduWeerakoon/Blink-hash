@@ -13,6 +13,13 @@
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/lib/CMakeFiles/install.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/lib/CMakeFiles/install/local.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/lib/CMakeFiles/install/strip.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/blinkhash_wal.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/edit_cache.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/rebuild_cache.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/list_install_components.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/install.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/install/local.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/CMakeFiles/install/strip.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/range.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/rdtsc.dir
@@ -24,6 +31,8 @@
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/bench_range_throughput_sync.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/bench_range_throughput_async.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/bench_convert_count.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_wal_record.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_wal_ring.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/edit_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/rebuild_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/list_install_components.dir

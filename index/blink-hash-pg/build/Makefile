@@ -201,6 +201,19 @@ blinkhash_async/fast:
 .PHONY : blinkhash_async/fast
 
 #=============================================================================
+# Target rules for targets named blinkhash_wal
+
+# Build rule for target.
+blinkhash_wal: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 blinkhash_wal
+.PHONY : blinkhash_wal
+
+# fast build rule for target.
+blinkhash_wal/fast:
+	$(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/build
+.PHONY : blinkhash_wal/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -343,6 +356,32 @@ bench_convert_count/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_convert_count.dir/build.make test/CMakeFiles/bench_convert_count.dir/build
 .PHONY : bench_convert_count/fast
 
+#=============================================================================
+# Target rules for targets named test_wal_record
+
+# Build rule for target.
+test_wal_record: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_wal_record
+.PHONY : test_wal_record
+
+# fast build rule for target.
+test_wal_record/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/build
+.PHONY : test_wal_record/fast
+
+#=============================================================================
+# Target rules for targets named test_wal_ring
+
+# Build rule for target.
+test_wal_ring: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_wal_ring
+.PHONY : test_wal_ring
+
+# fast build rule for target.
+test_wal_ring/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/build
+.PHONY : test_wal_ring/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -363,11 +402,14 @@ help:
 	@echo "... bench_range_throughput_sync"
 	@echo "... blinkhash"
 	@echo "... blinkhash_async"
+	@echo "... blinkhash_wal"
 	@echo "... mixed"
 	@echo "... range"
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_record"
+	@echo "... test_wal_ring"
 	@echo "... timestamp"
 .PHONY : help
 

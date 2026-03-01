@@ -13,6 +13,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.31.3/CMakeSystem.cmake"
   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/CMakeLists.txt"
   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/test/CMakeLists.txt"
+  "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/CMakeLists.txt"
   "/opt/homebrew/opt/tbb/lib/cmake/TBB/TBBConfig.cmake"
   "/opt/homebrew/opt/tbb/lib/cmake/TBB/TBBConfigVersion.cmake"
   "/opt/homebrew/opt/tbb/lib/cmake/TBB/TBBTargets-release.cmake"
@@ -59,6 +60,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "lib/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "wal/CMakeFiles/CMakeDirectoryInformation.cmake"
   "test/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -67,6 +69,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "lib/CMakeFiles/adapt.dir/DependInfo.cmake"
   "lib/CMakeFiles/blinkhash.dir/DependInfo.cmake"
   "lib/CMakeFiles/blinkhash_async.dir/DependInfo.cmake"
+  "wal/CMakeFiles/blinkhash_wal.dir/DependInfo.cmake"
   "test/CMakeFiles/test.dir/DependInfo.cmake"
   "test/CMakeFiles/range.dir/DependInfo.cmake"
   "test/CMakeFiles/rdtsc.dir/DependInfo.cmake"
@@ -78,4 +81,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/bench_range_throughput_sync.dir/DependInfo.cmake"
   "test/CMakeFiles/bench_range_throughput_async.dir/DependInfo.cmake"
   "test/CMakeFiles/bench_convert_count.dir/DependInfo.cmake"
+  "test/CMakeFiles/test_wal_record.dir/DependInfo.cmake"
+  "test/CMakeFiles/test_wal_ring.dir/DependInfo.cmake"
   )
