@@ -31,8 +31,8 @@
 using namespace BLINK_HASH::WAL;
 
 /* ── config ────────────────────────────────────────────────────── */
-static constexpr int    NUM_THREADS  = 4;
-static constexpr int    RECORDS_PER  = 100000;
+static constexpr int    NUM_THREADS  = 16;
+static constexpr int    RECORDS_PER  = 1000000;
 static constexpr size_t RING_CAP     = 128ULL * 1024 * 1024;
 
 /* ═══════════════════════════════════════════════════════════════
@@ -139,9 +139,8 @@ static void producer_fn(RingBuffer& ring, int tid, int count) {
         size_t rec_sz = wal_record_serialize(
             RecordType::INSERT, lsn, &ip, sizeof(ip), tmp);
 
-        while (!tbuf.append(tmp, rec_sz)) {
-            tbuf.flush(ring);
-        }
+        /* Use the new auto-flush API instead of manual flush loop */
+        tbuf.append_and_maybe_flush(tmp, rec_sz, ring);
     }
     tbuf.drain(ring);
 }

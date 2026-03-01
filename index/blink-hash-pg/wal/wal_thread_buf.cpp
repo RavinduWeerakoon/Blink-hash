@@ -73,6 +73,28 @@ bool ThreadBuf::append(const void* data, size_t len) {
     return true;
 }
 
+bool ThreadBuf::append_and_maybe_flush(const void* data, size_t len, RingBuffer& ring) {
+    /* If buffer can't hold this record, flush first */
+    if (used_ + len > THREAD_BUF_SIZE) {
+        flush(ring);
+    }
+
+    if (len > THREAD_BUF_SIZE)
+        return false;
+
+    std::memcpy(buf_ + used_, data, len);
+    used_ += len;
+
+    /* Auto-flush when we've crossed the 93% threshold.
+     * This batches ~60 KB of records per ring reserve/commit,
+     * minimizing CAS contention and block-alignment waste. */
+    if (used_ >= THREAD_BUF_FLUSH_AT) {
+        flush(ring);
+    }
+
+    return true;
+}
+
 /* flush / drain */
 
 void ThreadBuf::flush(RingBuffer& ring) {
