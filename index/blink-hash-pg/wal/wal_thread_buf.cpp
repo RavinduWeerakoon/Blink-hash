@@ -72,7 +72,7 @@ bool ThreadBuf::append(const void* data, size_t len) {
     used_ += len;
     return true;
 }
-
+// use this API when you want to append and auto-flush if we cross the high-water mark
 bool ThreadBuf::append_and_maybe_flush(const void* data, size_t len, RingBuffer& ring) {
     /* If buffer can't hold this record, flush first */
     if (used_ + len > THREAD_BUF_SIZE) {
@@ -85,9 +85,9 @@ bool ThreadBuf::append_and_maybe_flush(const void* data, size_t len, RingBuffer&
     std::memcpy(buf_ + used_, data, len);
     used_ += len;
 
-    /* Auto-flush when we've crossed the 93% threshold.
-     * This batches ~60 KB of records per ring reserve/commit,
-     * minimizing CAS contention and block-alignment waste. */
+    /* Auto-flush when we've crossed the 93% threshold.  This keeps us from buffering too much data while still allowing
+     some headroom for records that are slightly larger than the flush
+     threshold. */
     if (used_ >= THREAD_BUF_FLUSH_AT) {
         flush(ring);
     }
