@@ -250,68 +250,83 @@ void Flusher::wait_uring_completion() {
 
 
 
+/*
+ * scan_max_lsn — walk a buffer of WAL records, skipping zero-padding
+ * from 4KB block alignment, and return the highest LSN found.
+ */
+static uint64_t scan_max_lsn(const char* buf, size_t len) {
+    uint64_t max_lsn = 0;
+    const char* scan = buf;
+    const char* end  = buf + len;
+
+    while (scan + sizeof(RecordHeader) <= end) {
+        RecordHeader hdr;
+        std::memcpy(&hdr, scan, sizeof(RecordHeader));
+
+        /* Skip zero-padding left by 4KB-aligned ThreadBuf flushes.
+         * Check lsn==0 AND total_size==0 (not just the first byte),
+         * because a valid record can have lsn % 256 == 0 giving a
+         * zero first byte in little-endian. */
+        if (hdr.lsn == 0 && hdr.total_size == 0) {
+            scan += sizeof(RecordHeader);
+            continue;
+        }
+
+        if (hdr.total_size < sizeof(RecordHeader) ||
+            hdr.total_size > FLUSH_BATCH_MAX ||
+            scan + hdr.total_size > end) {
+            /* Corrupted or partial — skip one byte */
+            ++scan;
+            continue;
+        }
+
+        if (hdr.lsn > max_lsn)
+            max_lsn = hdr.lsn;
+        scan += hdr.total_size;
+    }
+    return max_lsn;
+}
+
 void Flusher::run() {
-    /*
-     * Strategy: spin reading the ring buffer.  Batch as much committed
-     * data as possible (up to FLUSH_BATCH_MAX), then write + sync.
-     *
-     * After each sync, update flushed_lsn_ so GroupCommit can wake
-     * waiters.  The flushed LSN is determined by scanning the last
-     * RecordHeader in the batch.
-     */
+    size_t bytes_since_sync = 0;
+
     while (running_.load(std::memory_order_acquire)) {
         const void* ptr = nullptr;
         size_t avail = ring_.peek(&ptr);
 
         if (avail == 0) {
-            /* Yield to avoid burning CPU.  Use a short sleep
-             * rather than pure spin — tunable. */
+         
+            if (bytes_since_sync > 0) {
+                sync_current_segment();
+                bytes_since_sync = 0;
+            }
             std::this_thread::sleep_for(std::chrono::microseconds(50));
             continue;
         }
 
-        /* Clamp to FLUSH_BATCH_MAX */
         size_t batch_len = std::min(avail, FLUSH_BATCH_MAX);
 
-        /* Copy into the 4 KB-aligned write buffer */
         std::memcpy(write_buf_, ptr, batch_len);
 
-        /* Scan for the highest LSN in this batch.  We walk the
-         * batch record-by-record. */
-        uint64_t max_lsn = 0;
-        {
-            const char* scan = write_buf_;
-            const char* scan_end = write_buf_ + batch_len;
-            while (scan + sizeof(RecordHeader) <= scan_end) {
-                RecordHeader hdr;
-                std::memcpy(&hdr, scan, sizeof(RecordHeader));
-
-                /* Validate the header looks sane */
-                if (hdr.total_size < sizeof(RecordHeader) ||
-                    hdr.total_size > FLUSH_BATCH_MAX ||
-                    scan + hdr.total_size > scan_end)
-                    break;
-
-                if (hdr.lsn > max_lsn)
-                    max_lsn = hdr.lsn;
-
-                scan += hdr.total_size;
-            }
-        }
-
+        uint64_t max_lsn = scan_max_lsn(write_buf_, batch_len);
 
         write_batch(write_buf_, batch_len);
-        sync_current_segment();
+        bytes_since_sync += batch_len;
 
-   
         ring_.advance(batch_len);
 
-  
+        /* Sync periodically — every 256 KB or when idle (handled above) */
+        if (bytes_since_sync >= 256 * 1024) {
+            sync_current_segment();
+            bytes_since_sync = 0;
+        }
+
+        /* Publish durable LSN */
         if (max_lsn > flushed_lsn_.load(std::memory_order_relaxed))
             flushed_lsn_.store(max_lsn, std::memory_order_release);
     }
 
-    /* Drain remaining data before returning */
+    /* Drain remaining data */
     for (;;) {
         const void* ptr = nullptr;
         size_t avail = ring_.peek(&ptr);
@@ -321,29 +336,18 @@ void Flusher::run() {
         size_t batch_len = std::min(avail, FLUSH_BATCH_MAX);
         std::memcpy(write_buf_, ptr, batch_len);
 
-        uint64_t max_lsn = 0;
-        {
-            const char* scan = write_buf_;
-            const char* scan_end = write_buf_ + batch_len;
-            while (scan + sizeof(RecordHeader) <= scan_end) {
-                RecordHeader hdr;
-                std::memcpy(&hdr, scan, sizeof(RecordHeader));
-                if (hdr.total_size < sizeof(RecordHeader) ||
-                    scan + hdr.total_size > scan_end)
-                    break;
-                if (hdr.lsn > max_lsn)
-                    max_lsn = hdr.lsn;
-                scan += hdr.total_size;
-            }
-        }
+        uint64_t max_lsn = scan_max_lsn(write_buf_, batch_len);
 
         write_batch(write_buf_, batch_len);
-        sync_current_segment();
         ring_.advance(batch_len);
 
         if (max_lsn > flushed_lsn_.load(std::memory_order_relaxed))
             flushed_lsn_.store(max_lsn, std::memory_order_release);
     }
+
+    sync_current_segment();
+    flushed_lsn_.store(flushed_lsn_.load(std::memory_order_relaxed),
+                       std::memory_order_release);
 }
 
 } 

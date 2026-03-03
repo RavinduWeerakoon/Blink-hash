@@ -83,4 +83,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "test/CMakeFiles/bench_convert_count.dir/DependInfo.cmake"
   "test/CMakeFiles/test_wal_record.dir/DependInfo.cmake"
   "test/CMakeFiles/test_wal_ring.dir/DependInfo.cmake"
+  "test/CMakeFiles/test_wal_e2e.dir/DependInfo.cmake"
+  "test/CMakeFiles/bench_wal_commit_latency.dir/DependInfo.cmake"
   )

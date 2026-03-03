@@ -175,6 +175,54 @@ blinkhash_wal/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/build
 .PHONY : blinkhash_wal/fast
 
+wal_flusher.o: wal_flusher.cpp.o
+.PHONY : wal_flusher.o
+
+# target to build an object file
+wal_flusher.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o
+.PHONY : wal_flusher.cpp.o
+
+wal_flusher.i: wal_flusher.cpp.i
+.PHONY : wal_flusher.i
+
+# target to preprocess a source file
+wal_flusher.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.i
+.PHONY : wal_flusher.cpp.i
+
+wal_flusher.s: wal_flusher.cpp.s
+.PHONY : wal_flusher.s
+
+# target to generate assembly for a file
+wal_flusher.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.s
+.PHONY : wal_flusher.cpp.s
+
+wal_group_commit.o: wal_group_commit.cpp.o
+.PHONY : wal_group_commit.o
+
+# target to build an object file
+wal_group_commit.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o
+.PHONY : wal_group_commit.cpp.o
+
+wal_group_commit.i: wal_group_commit.cpp.i
+.PHONY : wal_group_commit.i
+
+# target to preprocess a source file
+wal_group_commit.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.i
+.PHONY : wal_group_commit.cpp.i
+
+wal_group_commit.s: wal_group_commit.cpp.s
+.PHONY : wal_group_commit.s
+
+# target to generate assembly for a file
+wal_group_commit.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.s
+.PHONY : wal_group_commit.cpp.s
+
 wal_record.o: wal_record.cpp.o
 .PHONY : wal_record.o
 
@@ -260,6 +308,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... blinkhash_wal"
+	@echo "... wal_flusher.o"
+	@echo "... wal_flusher.i"
+	@echo "... wal_flusher.s"
+	@echo "... wal_group_commit.o"
+	@echo "... wal_group_commit.i"
+	@echo "... wal_group_commit.s"
 	@echo "... wal_record.o"
 	@echo "... wal_record.i"
 	@echo "... wal_record.s"

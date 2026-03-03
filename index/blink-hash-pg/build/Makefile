@@ -382,6 +382,32 @@ test_wal_ring/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/build
 .PHONY : test_wal_ring/fast
 
+#=============================================================================
+# Target rules for targets named test_wal_e2e
+
+# Build rule for target.
+test_wal_e2e: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_wal_e2e
+.PHONY : test_wal_e2e
+
+# fast build rule for target.
+test_wal_e2e/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/build
+.PHONY : test_wal_e2e/fast
+
+#=============================================================================
+# Target rules for targets named bench_wal_commit_latency
+
+# Build rule for target.
+bench_wal_commit_latency: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bench_wal_commit_latency
+.PHONY : bench_wal_commit_latency
+
+# fast build rule for target.
+bench_wal_commit_latency/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/build
+.PHONY : bench_wal_commit_latency/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -400,6 +426,7 @@ help:
 	@echo "... bench_range_latency_sync"
 	@echo "... bench_range_throughput_async"
 	@echo "... bench_range_throughput_sync"
+	@echo "... bench_wal_commit_latency"
 	@echo "... blinkhash"
 	@echo "... blinkhash_async"
 	@echo "... blinkhash_wal"
@@ -408,6 +435,7 @@ help:
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_e2e"
 	@echo "... test_wal_record"
 	@echo "... test_wal_ring"
 	@echo "... timestamp"

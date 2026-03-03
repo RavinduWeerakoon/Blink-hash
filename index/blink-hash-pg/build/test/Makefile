@@ -343,6 +343,34 @@ test_wal_ring/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/build
 .PHONY : test_wal_ring/fast
 
+# Convenience name for target.
+test/CMakeFiles/test_wal_e2e.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_e2e.dir/rule
+.PHONY : test/CMakeFiles/test_wal_e2e.dir/rule
+
+# Convenience name for target.
+test_wal_e2e: test/CMakeFiles/test_wal_e2e.dir/rule
+.PHONY : test_wal_e2e
+
+# fast build rule for target.
+test_wal_e2e/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/build
+.PHONY : test_wal_e2e/fast
+
+# Convenience name for target.
+test/CMakeFiles/bench_wal_commit_latency.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_wal_commit_latency.dir/rule
+.PHONY : test/CMakeFiles/bench_wal_commit_latency.dir/rule
+
+# Convenience name for target.
+bench_wal_commit_latency: test/CMakeFiles/bench_wal_commit_latency.dir/rule
+.PHONY : bench_wal_commit_latency
+
+# fast build rule for target.
+bench_wal_commit_latency/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/build
+.PHONY : bench_wal_commit_latency/fast
+
 bench_convert_count.o: bench_convert_count.cpp.o
 .PHONY : bench_convert_count.o
 
@@ -420,6 +448,30 @@ bench_range_throughput.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_range_throughput_sync.dir/build.make test/CMakeFiles/bench_range_throughput_sync.dir/bench_range_throughput.cpp.s
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_range_throughput_async.dir/build.make test/CMakeFiles/bench_range_throughput_async.dir/bench_range_throughput.cpp.s
 .PHONY : bench_range_throughput.cpp.s
+
+bench_wal_commit_latency.o: bench_wal_commit_latency.cpp.o
+.PHONY : bench_wal_commit_latency.o
+
+# target to build an object file
+bench_wal_commit_latency.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/bench_wal_commit_latency.cpp.o
+.PHONY : bench_wal_commit_latency.cpp.o
+
+bench_wal_commit_latency.i: bench_wal_commit_latency.cpp.i
+.PHONY : bench_wal_commit_latency.i
+
+# target to preprocess a source file
+bench_wal_commit_latency.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/bench_wal_commit_latency.cpp.i
+.PHONY : bench_wal_commit_latency.cpp.i
+
+bench_wal_commit_latency.s: bench_wal_commit_latency.cpp.s
+.PHONY : bench_wal_commit_latency.s
+
+# target to generate assembly for a file
+bench_wal_commit_latency.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/bench_wal_commit_latency.cpp.s
+.PHONY : bench_wal_commit_latency.cpp.s
 
 mixed.o: mixed.cpp.o
 .PHONY : mixed.o
@@ -541,6 +593,30 @@ test_string.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.s
 .PHONY : test_string.cpp.s
 
+test_wal_e2e.o: test_wal_e2e.cpp.o
+.PHONY : test_wal_e2e.o
+
+# target to build an object file
+test_wal_e2e.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/test_wal_e2e.cpp.o
+.PHONY : test_wal_e2e.cpp.o
+
+test_wal_e2e.i: test_wal_e2e.cpp.i
+.PHONY : test_wal_e2e.i
+
+# target to preprocess a source file
+test_wal_e2e.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/test_wal_e2e.cpp.i
+.PHONY : test_wal_e2e.cpp.i
+
+test_wal_e2e.s: test_wal_e2e.cpp.s
+.PHONY : test_wal_e2e.s
+
+# target to generate assembly for a file
+test_wal_e2e.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/test_wal_e2e.cpp.s
+.PHONY : test_wal_e2e.cpp.s
+
 test_wal_record.o: test_wal_record.cpp.o
 .PHONY : test_wal_record.o
 
@@ -630,11 +706,13 @@ help:
 	@echo "... bench_range_latency_sync"
 	@echo "... bench_range_throughput_async"
 	@echo "... bench_range_throughput_sync"
+	@echo "... bench_wal_commit_latency"
 	@echo "... mixed"
 	@echo "... range"
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_e2e"
 	@echo "... test_wal_record"
 	@echo "... test_wal_ring"
 	@echo "... timestamp"
@@ -647,6 +725,9 @@ help:
 	@echo "... bench_range_throughput.o"
 	@echo "... bench_range_throughput.i"
 	@echo "... bench_range_throughput.s"
+	@echo "... bench_wal_commit_latency.o"
+	@echo "... bench_wal_commit_latency.i"
+	@echo "... bench_wal_commit_latency.s"
 	@echo "... mixed.o"
 	@echo "... mixed.i"
 	@echo "... mixed.s"
@@ -662,6 +743,9 @@ help:
 	@echo "... test_string.o"
 	@echo "... test_string.i"
 	@echo "... test_string.s"
+	@echo "... test_wal_e2e.o"
+	@echo "... test_wal_e2e.i"
+	@echo "... test_wal_e2e.s"
 	@echo "... test_wal_record.o"
 	@echo "... test_wal_record.i"
 	@echo "... test_wal_record.s"

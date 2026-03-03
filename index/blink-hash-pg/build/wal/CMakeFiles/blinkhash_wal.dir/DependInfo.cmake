@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_flusher.cpp" "wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o" "gcc" "wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o.d"
+  "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_group_commit.cpp" "wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o" "gcc" "wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o.d"
   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_record.cpp" "wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o" "gcc" "wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o.d"
   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_ring.cpp" "wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o" "gcc" "wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o.d"
   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_thread_buf.cpp" "wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o" "gcc" "wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o.d"

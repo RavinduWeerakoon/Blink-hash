@@ -33,6 +33,8 @@
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/bench_convert_count.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_wal_record.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_wal_ring.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/test_wal_e2e.dir
+/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/bench_wal_commit_latency.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/edit_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/rebuild_cache.dir
 /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test/CMakeFiles/list_install_components.dir
