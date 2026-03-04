@@ -434,6 +434,19 @@ test_wal_recovery/fast:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/build
 .PHONY : test_wal_recovery/fast
 
+#=============================================================================
+# Target rules for targets named test_wal_checkpoint
+
+# Build rule for target.
+test_wal_checkpoint: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_wal_checkpoint
+.PHONY : test_wal_checkpoint
+
+# fast build rule for target.
+test_wal_checkpoint/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/build
+.PHONY : test_wal_checkpoint/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -461,6 +474,7 @@ help:
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_checkpoint"
 	@echo "... test_wal_e2e"
 	@echo "... test_wal_hooks"
 	@echo "... test_wal_record"

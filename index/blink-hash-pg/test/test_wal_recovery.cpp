@@ -102,8 +102,8 @@ static void test_insert_recover() {
         auto stats = recover<uint64_t, uint64_t>(
             wal_dir, tree2, ti, 0);
 
-        printf("    recovered: %lu inserts in %.3f s\n",
-               stats.inserts_replayed, stats.elapsed_sec);
+        printf("    recovered: %llu inserts in %.3f s\n",
+               (unsigned long long)stats.inserts_replayed, stats.elapsed_sec);
 
         assert(stats.inserts_replayed == N);
 
@@ -175,9 +175,9 @@ static void test_mixed_recover() {
         auto stats = recover<uint64_t, uint64_t>(
             wal_dir, tree2, ti, 0);
 
-        printf("    recovered: %lu ins, %lu upd, %lu del in %.3f s\n",
-               stats.inserts_replayed, stats.updates_replayed,
-               stats.deletes_replayed, stats.elapsed_sec);
+        printf("    recovered: %llu ins, %llu upd, %llu del in %.3f s\n",
+               (unsigned long long)stats.inserts_replayed, (unsigned long long)stats.updates_replayed,
+               (unsigned long long)stats.deletes_replayed, stats.elapsed_sec);
 
         /* Verify updated keys 1..1000 have value*2 */
         int correct_updates = 0;
@@ -243,8 +243,8 @@ static void test_counter_reseed() {
         lsn_before = g_lsn.load();
         nid_before = g_node_id.load();
 
-        printf("    before crash: lsn=%lu, node_id=%lu\n",
-               lsn_before, nid_before);
+        printf("    before crash: lsn=%llu, node_id=%llu\n",
+               (unsigned long long)lsn_before, (unsigned long long)nid_before);
 
         wal_flush_thread_buf();
         flusher.stop();
@@ -265,9 +265,9 @@ static void test_counter_reseed() {
         uint64_t lsn_after = g_lsn.load();
         uint64_t nid_after = g_node_id.load();
 
-        printf("    after recover: lsn=%lu (was %lu), "
-               "node_id=%lu (was %lu)\n",
-               lsn_after, lsn_before, nid_after, nid_before);
+        printf("    after recover: lsn=%llu (was %llu), "
+               "node_id=%llu (was %llu)\n",
+               (unsigned long long)lsn_after, (unsigned long long)lsn_before, (unsigned long long)nid_after, (unsigned long long)nid_before);
 
         /* LSN counter must be >= what we had before crash */
         assert(lsn_after >= lsn_before);
@@ -326,9 +326,9 @@ static void test_large_scale_recovery() {
         auto stats = recover<uint64_t, uint64_t>(
             wal_dir, tree2, ti, 0);
 
-        printf("    recovered: %lu records in %.3f s (%.0f recs/s)\n",
-               stats.inserts_replayed, stats.elapsed_sec,
-               stats.inserts_replayed / stats.elapsed_sec);
+        printf("    recovered: %llu records in %.3f s (%.0f recs/s)\n",
+               (unsigned long long)stats.inserts_replayed, stats.elapsed_sec,
+               (double)stats.inserts_replayed / stats.elapsed_sec);
 
         assert(stats.inserts_replayed == N);
 

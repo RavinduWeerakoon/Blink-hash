@@ -104,7 +104,7 @@ class btree_t{
 	int height();
 	
 	ThreadInfo getThreadInfo();
-
+	node_t* get_root() const { return root; }
 	void footprint(uint64_t& meta, uint64_t& structural_data_occupied, uint64_t& structural_data_unoccupied, uint64_t& key_data_occupied, uint64_t& key_data_unoccupied);
 
     private:

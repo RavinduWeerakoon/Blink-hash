@@ -58,6 +58,15 @@ target_link_libraries(test_wal_hooks blinkhash blinkhash_wal pthread)
 # ---- Phase 4 WAL recovery test ----
 add_executable(test_wal_recovery test_wal_recovery.cpp)
 target_link_libraries(test_wal_recovery blinkhash blinkhash_wal pthread)
+# ---- Phase 5 Checkpoint test ----
+add_executable(test_wal_checkpoint test_wal_checkpoint.cpp)
+target_link_libraries(test_wal_checkpoint blinkhash blinkhash_wal pthread)
+# ---- Phase 6 Persistence tests ----
+add_executable(test_node_map test_node_map.cpp)
+target_link_libraries(test_node_map blinkhash blinkhash_wal pthread)
+
+add_executable(test_buffer_pool test_buffer_pool.cpp)
+target_link_libraries(test_buffer_pool blinkhash blinkhash_wal pthread)
 ## factor analysis
 #add_executable(baseline_ timestamp.cpp)
 #target_link_libraries(baseline_ baseline pthread)

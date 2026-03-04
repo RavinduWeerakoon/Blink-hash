@@ -399,6 +399,20 @@ test_wal_recovery/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/build
 .PHONY : test_wal_recovery/fast
 
+# Convenience name for target.
+test/CMakeFiles/test_wal_checkpoint.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_checkpoint.dir/rule
+.PHONY : test/CMakeFiles/test_wal_checkpoint.dir/rule
+
+# Convenience name for target.
+test_wal_checkpoint: test/CMakeFiles/test_wal_checkpoint.dir/rule
+.PHONY : test_wal_checkpoint
+
+# fast build rule for target.
+test_wal_checkpoint/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/build
+.PHONY : test_wal_checkpoint/fast
+
 bench_convert_count.o: bench_convert_count.cpp.o
 .PHONY : bench_convert_count.o
 
@@ -621,6 +635,30 @@ test_string.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/test_string.cpp.s
 .PHONY : test_string.cpp.s
 
+test_wal_checkpoint.o: test_wal_checkpoint.cpp.o
+.PHONY : test_wal_checkpoint.o
+
+# target to build an object file
+test_wal_checkpoint.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/test_wal_checkpoint.cpp.o
+.PHONY : test_wal_checkpoint.cpp.o
+
+test_wal_checkpoint.i: test_wal_checkpoint.cpp.i
+.PHONY : test_wal_checkpoint.i
+
+# target to preprocess a source file
+test_wal_checkpoint.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/test_wal_checkpoint.cpp.i
+.PHONY : test_wal_checkpoint.cpp.i
+
+test_wal_checkpoint.s: test_wal_checkpoint.cpp.s
+.PHONY : test_wal_checkpoint.s
+
+# target to generate assembly for a file
+test_wal_checkpoint.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/test_wal_checkpoint.cpp.s
+.PHONY : test_wal_checkpoint.cpp.s
+
 test_wal_e2e.o: test_wal_e2e.cpp.o
 .PHONY : test_wal_e2e.o
 
@@ -788,6 +826,7 @@ help:
 	@echo "... rdtsc"
 	@echo "... test"
 	@echo "... test_string"
+	@echo "... test_wal_checkpoint"
 	@echo "... test_wal_e2e"
 	@echo "... test_wal_hooks"
 	@echo "... test_wal_record"
@@ -821,6 +860,9 @@ help:
 	@echo "... test_string.o"
 	@echo "... test_string.i"
 	@echo "... test_string.s"
+	@echo "... test_wal_checkpoint.o"
+	@echo "... test_wal_checkpoint.i"
+	@echo "... test_wal_checkpoint.s"
 	@echo "... test_wal_e2e.o"
 	@echo "... test_wal_e2e.i"
 	@echo "... test_wal_e2e.s"

@@ -97,10 +97,20 @@ class lnode_btree_t : public lnode_t<Key_t, Value_t>{
         int range_lookup(Key_t key, Value_t* buf, int count, int range, bool continued);
 
 	void print();
+	/* Read-only access for snapshot serialization */
+	const entry_t<Key_t, Value_t>& get_entry(int idx) const {
+	    return entry[idx];
+	}
+
+	/* Write access for page deserialization */
+	void set_entry(int idx, Key_t key, Value_t value) {
+	    entry[idx].key = key;
+	    entry[idx].value = value;
+	}
 
         void sanity_check(Key_t _high_key, bool first);
 
-        int get_cnt();
+        int get_cnt() const;
 
         double utilization();
 
@@ -192,7 +202,15 @@ class lnode_hash_t : public lnode_t<Key_t, Value_t>{
         double utilization();
 
 	void footprint(uint64_t& meta, uint64_t& structural_data_occupied, uint64_t& structural_data_unoccupied, uint64_t& key_data_occupied, uint64_t& key_data_unoccupied);
+	/* Read-only access for snapshot serialization */
+	const bucket_t<Key_t, Value_t>& get_bucket(int idx) const {
+	    return bucket[idx];
+	}
 
+	/* Write access for page deserialization */
+	bucket_t<Key_t, Value_t>& get_bucket_mut(int idx) {
+	    return bucket[idx];
+	}
     private:
 
 	bool stabilize_all(uint64_t version);

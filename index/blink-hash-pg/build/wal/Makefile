@@ -175,6 +175,30 @@ blinkhash_wal/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/build
 .PHONY : blinkhash_wal/fast
 
+wal_checkpoint.o: wal_checkpoint.cpp.o
+.PHONY : wal_checkpoint.o
+
+# target to build an object file
+wal_checkpoint.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o
+.PHONY : wal_checkpoint.cpp.o
+
+wal_checkpoint.i: wal_checkpoint.cpp.i
+.PHONY : wal_checkpoint.i
+
+# target to preprocess a source file
+wal_checkpoint.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.i
+.PHONY : wal_checkpoint.cpp.i
+
+wal_checkpoint.s: wal_checkpoint.cpp.s
+.PHONY : wal_checkpoint.s
+
+# target to generate assembly for a file
+wal_checkpoint.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.s
+.PHONY : wal_checkpoint.cpp.s
+
 wal_emitter.o: wal_emitter.cpp.o
 .PHONY : wal_emitter.o
 
@@ -356,6 +380,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... blinkhash_wal"
+	@echo "... wal_checkpoint.o"
+	@echo "... wal_checkpoint.i"
+	@echo "... wal_checkpoint.s"
 	@echo "... wal_emitter.o"
 	@echo "... wal_emitter.i"
 	@echo "... wal_emitter.s"

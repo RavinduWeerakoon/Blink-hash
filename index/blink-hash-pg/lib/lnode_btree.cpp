@@ -198,7 +198,7 @@ void lnode_btree_t<Key_t, Value_t>::sanity_check(Key_t _high_key, bool first){
 }
 
 template <typename Key_t, typename Value_t>
-int lnode_btree_t<Key_t, Value_t>::get_cnt(){
+int lnode_btree_t<Key_t, Value_t>::get_cnt() const{
     return this->cnt;
 }
 

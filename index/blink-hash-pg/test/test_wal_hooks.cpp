@@ -272,7 +272,7 @@ static void test_lsn_ordering() {
         prev = r.hdr.lsn;
     }
 
-    printf("    %zu records, LSN range [1, %lu]\n", records.size(), prev);
+    printf("    %zu records, LSN range [1, %llu]\n", records.size(), (unsigned long long)prev);
 
     wal_disable();
     printf("  [PASS] LSN global ordering\n");

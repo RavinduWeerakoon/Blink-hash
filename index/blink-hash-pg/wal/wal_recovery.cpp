@@ -7,7 +7,7 @@
 #include "wal_recovery.h"
 #include "wal_record.h"
 #include "wal_emitter.h"    /* for reseed_lsn(), reseed_node_id() */
-
+#include "wal_checkpoint.h"  /* for CheckpointManifest */
 #include "bh_key.h"          /* for  StringKey */
 #include "tree.h"
 #include "common.h"        /* for key64_t, value64_t */
@@ -332,7 +332,24 @@ RecoveryStats recover(const std::string& wal_dir,
     RecoveryStats stats = {};
 
     auto t0 = std::chrono::steady_clock::now();
+    /* Check for checkpoint manifest */
+    CheckpointManifest manifest;
+    if (from_lsn == 0 && read_manifest(wal_dir, &manifest)) {
+      printf("[recovery] found checkpoint: lsn=%llu, snapshot=%s\n",
+               (unsigned long long)manifest.checkpoint_lsn,
+              manifest.snapshot_file.c_str());
 
+       /* Load snapshot into tree */
+        std::string snap_path = wal_dir + "/" + manifest.snapshot_file;
+        uint64_t loaded = load_snapshot<Key_t, Value_t>(
+            snap_path, tree, threadInfo);
+
+        printf("[recovery] loaded %llu entries from snapshot\n",
+               (unsigned long long)loaded);
+
+        
+        from_lsn = manifest.checkpoint_lsn;
+    }
 
     auto data = read_all_segments(wal_dir);
 
@@ -394,8 +411,8 @@ RecoveryStats recover(const std::string& wal_dir,
                   return a.lsn < b.lsn;
               });
 
-    printf("[recovery] %zu records to replay (from LSN %lu)\n",
-           refs.size(), from_lsn);
+    printf("[recovery] %zu records to replay (from LSN %llu)\n",
+           refs.size(), (unsigned long long)from_lsn);
 
     /* Replay in LSN order */
     for (auto& ref : refs) {
@@ -416,10 +433,13 @@ RecoveryStats recover(const std::string& wal_dir,
     auto t1 = std::chrono::steady_clock::now();
     stats.elapsed_sec = std::chrono::duration<double>(t1 - t0).count();
 
-    printf("[recovery] done: %lu inserts, %lu deletes, %lu updates "
-           "in %.3f s (max_lsn=%lu)\n",
-           stats.inserts_replayed, stats.deletes_replayed,
-           stats.updates_replayed, stats.elapsed_sec, stats.max_lsn);
+    printf("[recovery] done: %llu inserts, %llu deletes, %llu updates "
+           "in %.3f s (max_lsn=%llu)\n",
+           (unsigned long long)stats.inserts_replayed,
+           (unsigned long long)stats.deletes_replayed,
+           (unsigned long long)stats.updates_replayed,
+           stats.elapsed_sec,
+           (unsigned long long)stats.max_lsn);
 
     return stats;
 }

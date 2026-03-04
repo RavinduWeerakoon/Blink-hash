@@ -132,6 +132,7 @@ test/all: test/CMakeFiles/test_wal_e2e.dir/all
 test/all: test/CMakeFiles/bench_wal_commit_latency.dir/all
 test/all: test/CMakeFiles/test_wal_hooks.dir/all
 test/all: test/CMakeFiles/test_wal_recovery.dir/all
+test/all: test/CMakeFiles/test_wal_checkpoint.dir/all
 .PHONY : test/all
 
 # Recursive "codegen" directory target.
@@ -152,6 +153,7 @@ test/codegen: test/CMakeFiles/test_wal_e2e.dir/codegen
 test/codegen: test/CMakeFiles/bench_wal_commit_latency.dir/codegen
 test/codegen: test/CMakeFiles/test_wal_hooks.dir/codegen
 test/codegen: test/CMakeFiles/test_wal_recovery.dir/codegen
+test/codegen: test/CMakeFiles/test_wal_checkpoint.dir/codegen
 .PHONY : test/codegen
 
 # Recursive "preinstall" directory target.
@@ -176,6 +178,7 @@ test/clean: test/CMakeFiles/test_wal_e2e.dir/clean
 test/clean: test/CMakeFiles/bench_wal_commit_latency.dir/clean
 test/clean: test/CMakeFiles/test_wal_hooks.dir/clean
 test/clean: test/CMakeFiles/test_wal_recovery.dir/clean
+test/clean: test/CMakeFiles/test_wal_checkpoint.dir/clean
 .PHONY : test/clean
 
 #=============================================================================
@@ -209,7 +212,7 @@ lib/CMakeFiles/adapt.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 
 # Build rule for subdir invocation for target.
 lib/CMakeFiles/adapt.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/CMakeFiles/adapt.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : lib/CMakeFiles/adapt.dir/rule
@@ -241,7 +244,7 @@ lib/CMakeFiles/blinkhash.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 
 # Build rule for subdir invocation for target.
 lib/CMakeFiles/blinkhash.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/CMakeFiles/blinkhash.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : lib/CMakeFiles/blinkhash.dir/rule
@@ -273,7 +276,7 @@ lib/CMakeFiles/blinkhash_async.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 
 # Build rule for subdir invocation for target.
 lib/CMakeFiles/blinkhash_async.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/CMakeFiles/blinkhash_async.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : lib/CMakeFiles/blinkhash_async.dir/rule
@@ -300,12 +303,12 @@ lib/CMakeFiles/blinkhash_async.dir/clean:
 wal/CMakeFiles/blinkhash_wal.dir/all:
 	$(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/depend
 	$(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44 "Built target blinkhash_wal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44,45 "Built target blinkhash_wal"
 .PHONY : wal/CMakeFiles/blinkhash_wal.dir/all
 
 # Build rule for subdir invocation for target.
 wal/CMakeFiles/blinkhash_wal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wal/CMakeFiles/blinkhash_wal.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : wal/CMakeFiles/blinkhash_wal.dir/rule
@@ -317,7 +320,7 @@ blinkhash_wal: wal/CMakeFiles/blinkhash_wal.dir/rule
 # codegen rule for target.
 wal/CMakeFiles/blinkhash_wal.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44 "Finished codegen for target blinkhash_wal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=37,38,39,40,41,42,43,44,45 "Finished codegen for target blinkhash_wal"
 .PHONY : wal/CMakeFiles/blinkhash_wal.dir/codegen
 
 # clean rule for target.
@@ -333,12 +336,12 @@ test/CMakeFiles/test.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/test.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=51,52 "Built target test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=52,53 "Built target test"
 .PHONY : test/CMakeFiles/test.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test.dir/rule
@@ -350,7 +353,7 @@ test: test/CMakeFiles/test.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=51,52 "Finished codegen for target test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=52,53 "Finished codegen for target test"
 .PHONY : test/CMakeFiles/test.dir/codegen
 
 # clean rule for target.
@@ -366,12 +369,12 @@ test/CMakeFiles/range.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/range.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/range.dir/build.make test/CMakeFiles/range.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/range.dir/build.make test/CMakeFiles/range.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=47,48 "Built target range"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=48,49 "Built target range"
 .PHONY : test/CMakeFiles/range.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/range.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/range.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/range.dir/rule
@@ -383,7 +386,7 @@ range: test/CMakeFiles/range.dir/rule
 # codegen rule for target.
 test/CMakeFiles/range.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/range.dir/build.make test/CMakeFiles/range.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=47,48 "Finished codegen for target range"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=48,49 "Finished codegen for target range"
 .PHONY : test/CMakeFiles/range.dir/codegen
 
 # clean rule for target.
@@ -399,12 +402,12 @@ test/CMakeFiles/rdtsc.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/rdtsc.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rdtsc.dir/build.make test/CMakeFiles/rdtsc.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rdtsc.dir/build.make test/CMakeFiles/rdtsc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=49,50 "Built target rdtsc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=50,51 "Built target rdtsc"
 .PHONY : test/CMakeFiles/rdtsc.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/rdtsc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/rdtsc.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/rdtsc.dir/rule
@@ -416,7 +419,7 @@ rdtsc: test/CMakeFiles/rdtsc.dir/rule
 # codegen rule for target.
 test/CMakeFiles/rdtsc.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/rdtsc.dir/build.make test/CMakeFiles/rdtsc.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=49,50 "Finished codegen for target rdtsc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=50,51 "Finished codegen for target rdtsc"
 .PHONY : test/CMakeFiles/rdtsc.dir/codegen
 
 # clean rule for target.
@@ -432,12 +435,12 @@ test/CMakeFiles/mixed.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/mixed.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/mixed.dir/build.make test/CMakeFiles/mixed.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/mixed.dir/build.make test/CMakeFiles/mixed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=45,46 "Built target mixed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=46,47 "Built target mixed"
 .PHONY : test/CMakeFiles/mixed.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/mixed.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/mixed.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/mixed.dir/rule
@@ -449,7 +452,7 @@ mixed: test/CMakeFiles/mixed.dir/rule
 # codegen rule for target.
 test/CMakeFiles/mixed.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/mixed.dir/build.make test/CMakeFiles/mixed.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=45,46 "Finished codegen for target mixed"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=46,47 "Finished codegen for target mixed"
 .PHONY : test/CMakeFiles/mixed.dir/codegen
 
 # clean rule for target.
@@ -465,12 +468,12 @@ test/CMakeFiles/timestamp.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/timestamp.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=65,66 "Built target timestamp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=68,69 "Built target timestamp"
 .PHONY : test/CMakeFiles/timestamp.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/timestamp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/timestamp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/timestamp.dir/rule
@@ -482,7 +485,7 @@ timestamp: test/CMakeFiles/timestamp.dir/rule
 # codegen rule for target.
 test/CMakeFiles/timestamp.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/timestamp.dir/build.make test/CMakeFiles/timestamp.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=65,66 "Finished codegen for target timestamp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=68,69 "Finished codegen for target timestamp"
 .PHONY : test/CMakeFiles/timestamp.dir/codegen
 
 # clean rule for target.
@@ -498,12 +501,12 @@ test/CMakeFiles/test_string.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/test_string.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=53,54 "Built target test_string"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=54,55 "Built target test_string"
 .PHONY : test/CMakeFiles/test_string.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_string.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_string.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_string.dir/rule
@@ -515,7 +518,7 @@ test_string: test/CMakeFiles/test_string.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_string.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_string.dir/build.make test/CMakeFiles/test_string.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=53,54 "Finished codegen for target test_string"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=54,55 "Finished codegen for target test_string"
 .PHONY : test/CMakeFiles/test_string.dir/codegen
 
 # clean rule for target.
@@ -536,7 +539,7 @@ test/CMakeFiles/bench_range_latency_sync.dir/all: wal/CMakeFiles/blinkhash_wal.d
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_range_latency_sync.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_range_latency_sync.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_range_latency_sync.dir/rule
@@ -569,7 +572,7 @@ test/CMakeFiles/bench_range_latency_async.dir/all: wal/CMakeFiles/blinkhash_wal.
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_range_latency_async.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_range_latency_async.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_range_latency_async.dir/rule
@@ -602,7 +605,7 @@ test/CMakeFiles/bench_range_throughput_sync.dir/all: wal/CMakeFiles/blinkhash_wa
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_range_throughput_sync.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_range_throughput_sync.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_range_throughput_sync.dir/rule
@@ -635,7 +638,7 @@ test/CMakeFiles/bench_range_throughput_async.dir/all: wal/CMakeFiles/blinkhash_w
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_range_throughput_async.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_range_throughput_async.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_range_throughput_async.dir/rule
@@ -668,7 +671,7 @@ test/CMakeFiles/bench_convert_count.dir/all: wal/CMakeFiles/blinkhash_wal.dir/al
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_convert_count.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_convert_count.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_convert_count.dir/rule
@@ -695,12 +698,12 @@ test/CMakeFiles/bench_convert_count.dir/clean:
 test/CMakeFiles/test_wal_record.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=59,60 "Built target test_wal_record"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=62,63 "Built target test_wal_record"
 .PHONY : test/CMakeFiles/test_wal_record.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_wal_record.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_record.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_wal_record.dir/rule
@@ -712,7 +715,7 @@ test_wal_record: test/CMakeFiles/test_wal_record.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_wal_record.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_record.dir/build.make test/CMakeFiles/test_wal_record.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=59,60 "Finished codegen for target test_wal_record"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=62,63 "Finished codegen for target test_wal_record"
 .PHONY : test/CMakeFiles/test_wal_record.dir/codegen
 
 # clean rule for target.
@@ -727,12 +730,12 @@ test/CMakeFiles/test_wal_record.dir/clean:
 test/CMakeFiles/test_wal_ring.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=63,64 "Built target test_wal_ring"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=66,67 "Built target test_wal_ring"
 .PHONY : test/CMakeFiles/test_wal_ring.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_wal_ring.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_ring.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_wal_ring.dir/rule
@@ -744,7 +747,7 @@ test_wal_ring: test/CMakeFiles/test_wal_ring.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_wal_ring.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_ring.dir/build.make test/CMakeFiles/test_wal_ring.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=63,64 "Finished codegen for target test_wal_ring"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=66,67 "Finished codegen for target test_wal_ring"
 .PHONY : test/CMakeFiles/test_wal_ring.dir/codegen
 
 # clean rule for target.
@@ -759,12 +762,12 @@ test/CMakeFiles/test_wal_ring.dir/clean:
 test/CMakeFiles/test_wal_e2e.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=55,56 "Built target test_wal_e2e"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=58,59 "Built target test_wal_e2e"
 .PHONY : test/CMakeFiles/test_wal_e2e.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_wal_e2e.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_e2e.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_wal_e2e.dir/rule
@@ -776,7 +779,7 @@ test_wal_e2e: test/CMakeFiles/test_wal_e2e.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_wal_e2e.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=55,56 "Finished codegen for target test_wal_e2e"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=58,59 "Finished codegen for target test_wal_e2e"
 .PHONY : test/CMakeFiles/test_wal_e2e.dir/codegen
 
 # clean rule for target.
@@ -796,7 +799,7 @@ test/CMakeFiles/bench_wal_commit_latency.dir/all: wal/CMakeFiles/blinkhash_wal.d
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/bench_wal_commit_latency.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/bench_wal_commit_latency.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/bench_wal_commit_latency.dir/rule
@@ -824,12 +827,12 @@ test/CMakeFiles/test_wal_hooks.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/test_wal_hooks.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=57,58 "Built target test_wal_hooks"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=60,61 "Built target test_wal_hooks"
 .PHONY : test/CMakeFiles/test_wal_hooks.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_wal_hooks.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_hooks.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_wal_hooks.dir/rule
@@ -841,7 +844,7 @@ test_wal_hooks: test/CMakeFiles/test_wal_hooks.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_wal_hooks.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=57,58 "Finished codegen for target test_wal_hooks"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=60,61 "Finished codegen for target test_wal_hooks"
 .PHONY : test/CMakeFiles/test_wal_hooks.dir/codegen
 
 # clean rule for target.
@@ -857,12 +860,12 @@ test/CMakeFiles/test_wal_recovery.dir/all: lib/CMakeFiles/blinkhash.dir/all
 test/CMakeFiles/test_wal_recovery.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/depend
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=61,62 "Built target test_wal_recovery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=64,65 "Built target test_wal_recovery"
 .PHONY : test/CMakeFiles/test_wal_recovery.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test_wal_recovery.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_recovery.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test_wal_recovery.dir/rule
@@ -874,13 +877,46 @@ test_wal_recovery: test/CMakeFiles/test_wal_recovery.dir/rule
 # codegen rule for target.
 test/CMakeFiles/test_wal_recovery.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=61,62 "Finished codegen for target test_wal_recovery"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=64,65 "Finished codegen for target test_wal_recovery"
 .PHONY : test/CMakeFiles/test_wal_recovery.dir/codegen
 
 # clean rule for target.
 test/CMakeFiles/test_wal_recovery.dir/clean:
 	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_recovery.dir/build.make test/CMakeFiles/test_wal_recovery.dir/clean
 .PHONY : test/CMakeFiles/test_wal_recovery.dir/clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/test_wal_checkpoint.dir
+
+# All Build rule for target.
+test/CMakeFiles/test_wal_checkpoint.dir/all: lib/CMakeFiles/blinkhash.dir/all
+test/CMakeFiles/test_wal_checkpoint.dir/all: wal/CMakeFiles/blinkhash_wal.dir/all
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/depend
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=56,57 "Built target test_wal_checkpoint"
+.PHONY : test/CMakeFiles/test_wal_checkpoint.dir/all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/test_wal_checkpoint.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 19
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_checkpoint.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/test_wal_checkpoint.dir/rule
+
+# Convenience name for target.
+test_wal_checkpoint: test/CMakeFiles/test_wal_checkpoint.dir/rule
+.PHONY : test_wal_checkpoint
+
+# codegen rule for target.
+test/CMakeFiles/test_wal_checkpoint.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=56,57 "Finished codegen for target test_wal_checkpoint"
+.PHONY : test/CMakeFiles/test_wal_checkpoint.dir/codegen
+
+# clean rule for target.
+test/CMakeFiles/test_wal_checkpoint.dir/clean:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_checkpoint.dir/build.make test/CMakeFiles/test_wal_checkpoint.dir/clean
+.PHONY : test/CMakeFiles/test_wal_checkpoint.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

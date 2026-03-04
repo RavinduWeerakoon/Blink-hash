@@ -34,28 +34,29 @@ public:
 
     void stop();
 
-    /*
-     * The most recent LSN that has been durably written to disk.
-     * Workers compare their record's LSN against this to decide
-     * whether a commit is durable.
-     */
+  
     uint64_t flushed_lsn() const {
         return flushed_lsn_.load(std::memory_order_acquire);
+    }
+
+    /** ID of the segment the flusher is currently writing to. */
+    uint64_t current_segment_id() const {
+        return segment_id_;
     }
 
 private:
 
     void run();
 
-    /* WAL segment file management  */
+
     void open_segment(uint64_t segment_id);
     void rotate_segment();
 
-    /*  I/O backend */
+ 
     void write_batch(const void* data, size_t len);
     void sync_current_segment();
 
-    /* io_uring state (Linux only) */
+   
 #ifdef __linux__
     void init_io_uring();
     void submit_uring_write(const void* data, size_t len, uint64_t offset);
@@ -63,7 +64,7 @@ private:
     void* uring_;          
 #endif
 
-    /* ── state ── */
+
     std::string   wal_dir_;
     RingBuffer&   ring_;
 

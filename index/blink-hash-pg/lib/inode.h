@@ -54,6 +54,17 @@ class inode_t : public node_t{
 
 	void sanity_check(Key_t _high_key, bool first);
 
+	/* Read-only access for page serialization */
+	const entry_t<Key_t, node_t*>& get_entry(int idx) const {
+	    return entry[idx];
+	}
+
+	/* Write access for page deserialization */
+	void set_entry(int idx, Key_t key, node_t* value) {
+	    entry[idx].key = key;
+	    entry[idx].value = value;
+	}
+
     private:
 
 	void batch_migrate(entry_t<Key_t, node_t*>* migrate, int& migrate_idx, int migrate_num);

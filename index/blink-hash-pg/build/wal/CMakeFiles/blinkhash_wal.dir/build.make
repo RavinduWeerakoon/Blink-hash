@@ -72,10 +72,24 @@ include wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/codegen:
 .PHONY : wal/CMakeFiles/blinkhash_wal.dir/codegen
 
+wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
+wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_checkpoint.cpp
+wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o"
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_checkpoint.cpp
+
+wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.i"
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_checkpoint.cpp > CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.i
+
+wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.s"
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_checkpoint.cpp -o CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.s
+
 wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_emitter.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_emitter.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.i: cmake_force
@@ -89,7 +103,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_flusher.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_flusher.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.i: cmake_force
@@ -103,7 +117,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_group_commit.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_group_commit.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.i: cmake_force
@@ -117,7 +131,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_record.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_record.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_record.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.i: cmake_force
@@ -131,7 +145,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_record.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_recovery.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_recovery.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.i: cmake_force
@@ -145,7 +159,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_recovery.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_ring.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_ring.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.i: cmake_force
@@ -159,7 +173,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.s: cmake_force
 wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/flags.make
 wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_thread_buf.cpp
 wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o: wal/CMakeFiles/blinkhash_wal.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o -MF CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o.d -o CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o -c /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_thread_buf.cpp
 
 wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.i: cmake_force
@@ -172,6 +186,7 @@ wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.s: cmake_force
 
 # Object files for target blinkhash_wal
 blinkhash_wal_OBJECTS = \
+"CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o" \
 "CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o" \
 "CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o" \
 "CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o" \
@@ -183,6 +198,7 @@ blinkhash_wal_OBJECTS = \
 # External object files for target blinkhash_wal
 blinkhash_wal_EXTERNAL_OBJECTS =
 
+wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_group_commit.cpp.o
@@ -192,7 +208,7 @@ wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_ring.cpp.o
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/wal_thread_buf.cpp.o
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/build.make
 wal/libblinkhash_wal.a: wal/CMakeFiles/blinkhash_wal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libblinkhash_wal.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libblinkhash_wal.a"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && $(CMAKE_COMMAND) -P CMakeFiles/blinkhash_wal.dir/cmake_clean_target.cmake
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/blinkhash_wal.dir/link.txt --verbose=$(VERBOSE)
 

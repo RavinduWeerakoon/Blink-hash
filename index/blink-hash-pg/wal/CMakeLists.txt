@@ -9,6 +9,10 @@ target_include_directories(blinkhash_wal PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # wal_recovery.cpp includes tree.h → needs lib/ headers
 target_include_directories(blinkhash_wal PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../lib)
 
+# Propagate the same feature flags the tree library uses
+target_compile_definitions(blinkhash_wal PUBLIC
+    ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION)
+
 # wal_recovery.cpp → tree.h → Epoche.h → tbb/enumerable_thread_specific.h
 find_package(TBB QUIET)
 if(TBB_FOUND)

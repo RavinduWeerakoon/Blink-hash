@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o"
+  "CMakeFiles/blinkhash_wal.dir/wal_checkpoint.cpp.o.d"
   "CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o"
   "CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o.d"
   "CMakeFiles/blinkhash_wal.dir/wal_flusher.cpp.o"
