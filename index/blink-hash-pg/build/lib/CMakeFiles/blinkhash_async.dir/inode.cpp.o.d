@@ -998,4 +998,8 @@ lib/CMakeFiles/blinkhash_async.dir/inode.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/_assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/usr/include/_static_assert.h \
   /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/bh_key.h \
-  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/entry.h
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/entry.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_emitter.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_record.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_thread_buf.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_ring.h

@@ -1,4 +1,5 @@
 #include "inode.h"
+#include "wal_emitter.h"
 
 namespace BLINK_HASH{
 
@@ -51,6 +52,7 @@ inode_t<Key_t>* inode_t<Key_t>::split(Key_t& split_key){
 
     int new_cnt = cnt-half-1;
     auto new_node = new inode_t<Key_t>(sibling_ptr, new_cnt, entry[half].value, level, high_key);
+	new_node->node_id = WAL::alloc_node_id(); 
     memcpy(new_node->entry, entry+half+1, sizeof(entry_t<Key_t, node_t*>)*new_cnt);
 
     sibling_ptr = static_cast<node_t*>(new_node);
@@ -232,8 +234,10 @@ inode_t<Key_t>** inode_t<Key_t>::batch_insert_last_level(Key_t* key, node_t** va
 	    calculate_node_num(total_num, numerator, remains, last_chunk, new_num, batch_size);
 
 	    auto new_nodes = new inode_t<Key_t>*[new_num];
-	    for(int i=0; i<new_num; i++)
+	    for(int i=0; i<new_num; i++){
 		new_nodes[i] = new inode_t<Key_t>(level);
+		new_nodes[i]->node_id = WAL::alloc_node_id();
+	    }
 
 	    auto old_sibling = sibling_ptr;
 	    sibling_ptr = static_cast<node_t*>(new_nodes[0]);
@@ -279,8 +283,10 @@ inode_t<Key_t>** inode_t<Key_t>::batch_insert_last_level(Key_t* key, node_t** va
 	    calculate_node_num(total_num, numerator, remains, last_chunk, new_num, batch_size);
 
 	    auto new_nodes = new inode_t<Key_t>*[new_num];
-	    for(int i=0; i<new_num; i++)
+	    for(int i=0; i<new_num; i++){
 		new_nodes[i] = new inode_t<Key_t>(level);
+		new_nodes[i]->node_id = WAL::alloc_node_id();
+	    }
 
 	    auto old_sibling = sibling_ptr;
 	    sibling_ptr = static_cast<node_t*>(new_nodes[0]);
@@ -386,8 +392,10 @@ inode_t<Key_t>** inode_t<Key_t>::batch_insert(Key_t* key, node_t** value, int nu
 	    calculate_node_num(total_num, numerator, remains, last_chunk, new_num, batch_size);
 
 	    auto new_nodes = new inode_t<Key_t>*[new_num];
-	    for(int i=0; i<new_num; i++)
+	    for(int i=0; i<new_num; i++){
 		new_nodes[i] = new inode_t<Key_t>(level);
+		new_nodes[i]->node_id = WAL::alloc_node_id();
+	    }
 
 	    auto old_sibling = sibling_ptr;
 	    sibling_ptr = static_cast<node_t*>(new_nodes[0]);
@@ -435,8 +443,10 @@ inode_t<Key_t>** inode_t<Key_t>::batch_insert(Key_t* key, node_t** value, int nu
 	    calculate_node_num(total_num, numerator, remains, last_chunk, new_num, batch_size);
 
 	    auto new_nodes = new inode_t<Key_t>*[new_num];
-	    for(int i=0; i<new_num; i++)
+	    for(int i=0; i<new_num; i++){
 		new_nodes[i] = new inode_t<Key_t>(level);
+		new_nodes[i]->node_id = WAL::alloc_node_id();
+	    }
 
 	    auto old_sibling = sibling_ptr;
 	    sibling_ptr = static_cast<node_t*>(new_nodes[0]);

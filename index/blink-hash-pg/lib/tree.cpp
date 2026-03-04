@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "wal_emitter.h"
 
 namespace BLINK_HASH{
 #ifdef ASYNC_ADAPT
@@ -168,14 +169,34 @@ void btree_t<Key_t, Value_t>::insert(Key_t key, Value_t value, ThreadInfo& epoch
     auto ret = leaf->insert(key, value, leaf_vstart);
     if(ret == -1) // leaf node has been split while inserting
 	goto restart;
-    else if(ret == 0) // insertion succeeded
-	return;
+    else if(ret == 0) {
+		if (WAL::g_wal_enabled) {
+            WAL::wal_emit_insert(
+                static_cast<node_t*>(leaf)->node_id,
+                0, 
+                &key, sizeof(Key_t),
+                static_cast<uint64_t>(value));
+        }
+        return;
+	}
     else{ // leaf node split
 	Key_t split_key;
 	auto new_leaf = leaf->split(split_key, key, value, leaf_vstart);
 	if(new_leaf == nullptr)
 	    goto restart; // another thread has already splitted this leaf node
-
+		/* WAL: log the split and the insert that triggered it */
+	if (WAL::g_wal_enabled) {
+	    WAL::wal_emit_split_leaf(
+	        static_cast<node_t*>(leaf)->node_id,
+	        static_cast<node_t*>(new_leaf)->node_id,
+	        &split_key, sizeof(Key_t));
+	    WAL::wal_emit_insert(
+	        (split_key < key)
+	            ? static_cast<node_t*>(new_leaf)->node_id
+	            : static_cast<node_t*>(leaf)->node_id,
+	        0, &key, sizeof(Key_t),
+	        static_cast<uint64_t>(value));
+	}
 	if(stack_cnt){
 	    int stack_idx = stack_cnt-1;
 	    auto old_parent = stack[stack_idx];
@@ -222,7 +243,12 @@ void btree_t<Key_t, Value_t>::insert(Key_t key, Value_t value, ThreadInfo& epoch
 		// internal node split
 		Key_t _split_key;
 		auto new_parent = old_parent->split(_split_key);
-
+		if (WAL::g_wal_enabled) {
+		    WAL::wal_emit_split_internal(
+		        old_parent->node_id,
+		        static_cast<node_t*>(new_parent)->node_id,
+		        &_split_key, sizeof(Key_t));
+		}
 		if(split_key <= _split_key)
 		    old_parent->insert(split_key, new_node);
 		else
@@ -237,6 +263,15 @@ void btree_t<Key_t, Value_t>::insert(Key_t key, Value_t value, ThreadInfo& epoch
 		else{ // set new root
 		    if(old_parent == root){ // current node is root
 			auto new_root = new inode_t<Key_t>(_split_key, old_parent, new_parent, nullptr, old_parent->level+1, new_parent->high_key);
+			if (WAL::g_wal_enabled) {
+			    WAL::wal_emit_new_root(
+			        new_root->node_id,
+			        old_parent->node_id,
+			        static_cast<node_t*>(new_parent)->node_id,
+			        &_split_key, sizeof(Key_t),
+			        static_cast<uint8_t>(old_parent->level + 1));
+			}
+			new_root->node_id = WAL::alloc_node_id();
 			root = static_cast<node_t*>(new_root);
 			old_parent->write_unlock();
 		    }
@@ -249,6 +284,15 @@ void btree_t<Key_t, Value_t>::insert(Key_t key, Value_t value, ThreadInfo& epoch
 	else{ // set new root
 	    if(root == leaf){ // current node is root
 		auto new_root = new inode_t<Key_t>(split_key, leaf, new_leaf, nullptr, root->level+1, (static_cast<lnode_t<Key_t, Value_t>*>(new_leaf))->high_key);
+		new_root->node_id = WAL::alloc_node_id();
+		if (WAL::g_wal_enabled) {
+		    WAL::wal_emit_new_root(
+		        new_root->node_id,
+		        static_cast<node_t*>(leaf)->node_id,
+		        static_cast<node_t*>(new_leaf)->node_id,
+		        &split_key, sizeof(Key_t),
+		        static_cast<uint8_t>(root->level + 1));
+		}
 		root = static_cast<node_t*>(new_root);
 		leaf->write_unlock();
 	    }
@@ -323,6 +367,7 @@ void btree_t<Key_t, Value_t>::insert_key(Key_t key, node_t* value, node_t* prev)
 
 	if(node == root){ // if current nodes is root
 	    auto new_root = new inode_t<Key_t>(split_key, node, new_node, nullptr, node->level+1, new_node->high_key);
+	    new_root->node_id = WAL::alloc_node_id();
 	    root = static_cast<node_t*>(new_root);
 	    node->write_unlock();
 	}
@@ -372,10 +417,17 @@ bool btree_t<Key_t, Value_t>::update(Key_t key, Value_t value, ThreadInfo& threa
     }
 
     auto ret = leaf->update(key, value, leaf_vstart);
-    if(ret == -1)
-	goto restart;
-    else if(ret == 0)
-	return true;
+    if(ret == -1){
+		goto restart;}
+    else if(ret == 0) {
+        if (WAL::g_wal_enabled) {
+            WAL::wal_emit_update(
+                static_cast<node_t*>(leaf)->node_id,
+                &key, sizeof(Key_t),
+                static_cast<uint64_t>(value));
+        }
+        return true;
+    }
     return false;
 }
 
@@ -424,12 +476,18 @@ bool btree_t<Key_t, Value_t>::remove(Key_t key, ThreadInfo& threadEpocheInfo){
     }
 
     auto ret = leaf->remove(key, leaf_vstart);
-    if(ret == -1) // leaf node has been updated
-	goto restart;
-    else if(ret == 0)
-	return true;
+    if(ret == -1) {
+	goto restart;}
+    else if(ret == 0) {
+        if (WAL::g_wal_enabled) {
+            WAL::wal_emit_delete(
+                static_cast<node_t*>(leaf)->node_id,
+                &key, sizeof(Key_t));
+        }
+        return true;
+    }
     else
-	return false;
+        return false;
 }
 
 
@@ -497,6 +555,7 @@ inode_t<Key_t>** btree_t<Key_t, Value_t>::new_root_for_adjustment(Key_t* key, no
     int idx = 0;
     for(int i=0; i<new_num; i++){
 	new_roots[i] = new inode_t<Key_t>(value[0]->level+1); // level
+	new_roots[i]->node_id = WAL::alloc_node_id();
 //	new_roots[i]->batch_insert(key, value, idx, num, batch_size);
 	if(i < new_num-1)
 	    new_roots[i]->sibling_ptr = static_cast<node_t*>(new_roots[i+1]);
@@ -586,6 +645,7 @@ void btree_t<Key_t, Value_t>::batch_insert(Key_t* key, node_t** value, int num, 
 	}
 
 	auto new_root = new inode_t<Key_t>(new_nodes[0]->level+1);
+	new_root->node_id = WAL::alloc_node_id();
 	new_root->insert_for_root(split_key, reinterpret_cast<node_t**>(new_nodes), static_cast<node_t*>(parent), new_num);
 	root = new_root;
 	parent->write_unlock();
@@ -698,8 +758,19 @@ bool btree_t<Key_t, Value_t>::convert(lnode_t<Key_t, Value_t>* leaf, uint64_t le
     int num = 0;
     auto nodes = (static_cast<lnode_hash_t<Key_t, Value_t>*>(leaf))->convert(num, leaf_version);
     if(nodes == nullptr)
-	return false;
+		return false;
 
+     /* WAL: log the conversion with all new leaf IDs */
+    if (WAL::g_wal_enabled) {
+        uint64_t new_ids[num];
+        for (int i = 0; i < num; i++)
+            new_ids[i] = static_cast<node_t*>(nodes[i])->node_id;
+        WAL::wal_emit_convert(
+            static_cast<node_t*>(leaf)->node_id,
+            new_ids, static_cast<uint32_t>(num),
+            0, 
+            sizeof(Key_t));
+    }
     Key_t split_key[num];
     split_key[0] = nodes[0]->high_key;
     for(int i=1; i<num; i++)

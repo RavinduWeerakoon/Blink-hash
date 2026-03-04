@@ -1,5 +1,6 @@
 #include "lnode.h"
 #include "hash.h"
+#include "wal_emitter.h"
 
 namespace BLINK_HASH{
 bool print_flag = false;
@@ -130,6 +131,7 @@ int lnode_hash_t<Key_t, Value_t>::insert(Key_t key, Value_t value, uint64_t vers
 template <typename Key_t, typename Value_t>
 lnode_hash_t<Key_t, Value_t>* lnode_hash_t<Key_t, Value_t>::split(Key_t& split_key, Key_t key, Value_t value, uint64_t version){
     auto new_right = new lnode_hash_t<Key_t, Value_t>(this->sibling_ptr, 0, this->level);
+	new_right->node_id = WAL::alloc_node_id(); 
     new_right->high_key = this->high_key;
     new_right->left_sibling_ptr = this;
 
@@ -837,8 +839,11 @@ lnode_btree_t<Key_t, Value_t>** lnode_hash_t<Key_t, Value_t>::convert(int& num, 
 	num = idx / batch_size + 1;
 
     auto leaf = new lnode_btree_t<Key_t, Value_t>*[num];
-    for(int i=0; i<num; i++)
+	
+    for(int i=0; i<num; i++){
 	leaf[i] = new lnode_btree_t<Key_t, Value_t>();
+	leaf[i]->node_id = WAL::alloc_node_id();
+    }
 
     int from = 0;
     for(int i=0; i<num; i++){

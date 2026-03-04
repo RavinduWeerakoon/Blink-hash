@@ -97,6 +97,7 @@ test/timestamp: test/CMakeFiles/timestamp.dir/timestamp.cpp.o
 test/timestamp: test/CMakeFiles/timestamp.dir/build.make
 test/timestamp: lib/libblinkhash.a
 test/timestamp: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/timestamp: wal/libblinkhash_wal.a
 test/timestamp: test/CMakeFiles/timestamp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable timestamp"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/timestamp.dir/link.txt --verbose=$(VERBOSE)

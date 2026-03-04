@@ -39,6 +39,7 @@ endif()
 find_package(TBB REQUIRED)
 
 include_directories(${CMAKE_SOURCE_DIR}/lib)
+include_directories(${CMAKE_SOURCE_DIR}/wal)
 add_subdirectory(lib)
 add_subdirectory(wal)
 add_subdirectory(test)

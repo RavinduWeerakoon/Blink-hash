@@ -97,6 +97,7 @@ test/bench_range_throughput_sync: test/CMakeFiles/bench_range_throughput_sync.di
 test/bench_range_throughput_sync: test/CMakeFiles/bench_range_throughput_sync.dir/build.make
 test/bench_range_throughput_sync: lib/libadapt.a
 test/bench_range_throughput_sync: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/bench_range_throughput_sync: wal/libblinkhash_wal.a
 test/bench_range_throughput_sync: test/CMakeFiles/bench_range_throughput_sync.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bench_range_throughput_sync"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bench_range_throughput_sync.dir/link.txt --verbose=$(VERBOSE)

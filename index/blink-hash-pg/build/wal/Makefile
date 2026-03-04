@@ -175,6 +175,30 @@ blinkhash_wal/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/build
 .PHONY : blinkhash_wal/fast
 
+wal_emitter.o: wal_emitter.cpp.o
+.PHONY : wal_emitter.o
+
+# target to build an object file
+wal_emitter.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.o
+.PHONY : wal_emitter.cpp.o
+
+wal_emitter.i: wal_emitter.cpp.i
+.PHONY : wal_emitter.i
+
+# target to preprocess a source file
+wal_emitter.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.i
+.PHONY : wal_emitter.cpp.i
+
+wal_emitter.s: wal_emitter.cpp.s
+.PHONY : wal_emitter.s
+
+# target to generate assembly for a file
+wal_emitter.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f wal/CMakeFiles/blinkhash_wal.dir/build.make wal/CMakeFiles/blinkhash_wal.dir/wal_emitter.cpp.s
+.PHONY : wal_emitter.cpp.s
+
 wal_flusher.o: wal_flusher.cpp.o
 .PHONY : wal_flusher.o
 
@@ -308,6 +332,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... blinkhash_wal"
+	@echo "... wal_emitter.o"
+	@echo "... wal_emitter.i"
+	@echo "... wal_emitter.s"
 	@echo "... wal_flusher.o"
 	@echo "... wal_flusher.i"
 	@echo "... wal_flusher.s"

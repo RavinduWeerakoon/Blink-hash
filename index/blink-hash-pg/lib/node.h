@@ -83,11 +83,12 @@ class node_t{
 	node_t* leftmost_ptr;
 	int cnt;
 	int level;
+	uint64_t node_id;
 
-	node_t(): lock(0b0), sibling_ptr(nullptr), leftmost_ptr(nullptr), cnt(0), level(0){ }
-	node_t(node_t* sibling, node_t* left, int count, int _level): lock(0b0), sibling_ptr(sibling), leftmost_ptr(left), cnt(count), level(_level) { }
-	node_t(node_t* sibling, node_t* left, int count, int _level, bool): lock(0b0), sibling_ptr(sibling), leftmost_ptr(left), cnt(count), level(_level) { }
-	node_t(uint32_t _level): lock(0b0), sibling_ptr(nullptr), leftmost_ptr(nullptr), cnt(0), level(_level) { }
+	node_t(): lock(0b0), sibling_ptr(nullptr), leftmost_ptr(nullptr), cnt(0), level(0), node_id(0){ }
+	node_t(node_t* sibling, node_t* left, int count, int _level): lock(0b0), sibling_ptr(sibling), leftmost_ptr(left), cnt(count), level(_level), node_id(0) { }
+	node_t(node_t* sibling, node_t* left, int count, int _level, bool): lock(0b0), sibling_ptr(sibling), leftmost_ptr(left), cnt(count), level(_level), node_id(0) { }
+	node_t(uint32_t _level): lock(0b0), sibling_ptr(nullptr), leftmost_ptr(nullptr), cnt(0), level(_level), node_id(0) { }
 
 	void update_meta(node_t* sibling_ptr_, int level_){
 	    lock = 0;

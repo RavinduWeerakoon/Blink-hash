@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = -DADAPTATION -DFINGERPRINT -DLINKED -DSAMPLING
 
-CXX_INCLUDES = -I/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib -isystem /opt/homebrew/opt/tbb/include
+CXX_INCLUDES = -I/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib -I/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal -isystem /opt/homebrew/opt/tbb/include
 
 CXX_FLAGSarm64 = -std=c++17 -pthread -march=native -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free -faligned-new=64 -O3 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
 

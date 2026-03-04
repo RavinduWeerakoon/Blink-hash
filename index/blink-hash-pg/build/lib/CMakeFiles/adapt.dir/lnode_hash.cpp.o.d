@@ -1000,4 +1000,8 @@ lib/CMakeFiles/adapt.dir/lnode_hash.cpp.o: \
   /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/bh_key.h \
   /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/bucket.h \
   /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/entry.h \
-  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/hash.h
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/lib/hash.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_emitter.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_record.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_thread_buf.h \
+  /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal/wal_ring.h

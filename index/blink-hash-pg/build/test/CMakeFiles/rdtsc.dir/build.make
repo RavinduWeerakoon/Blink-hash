@@ -97,6 +97,7 @@ test/rdtsc: test/CMakeFiles/rdtsc.dir/rdtsc.cpp.o
 test/rdtsc: test/CMakeFiles/rdtsc.dir/build.make
 test/rdtsc: lib/libblinkhash.a
 test/rdtsc: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/rdtsc: wal/libblinkhash_wal.a
 test/rdtsc: test/CMakeFiles/rdtsc.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable rdtsc"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/rdtsc.dir/link.txt --verbose=$(VERBOSE)

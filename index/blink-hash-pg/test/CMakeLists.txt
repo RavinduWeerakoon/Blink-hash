@@ -52,6 +52,9 @@ target_link_libraries(test_wal_e2e blinkhash_wal pthread)
 
 add_executable(bench_wal_commit_latency bench_wal_commit_latency.cpp)
 target_link_libraries(bench_wal_commit_latency blinkhash_wal pthread)
+# ---- Phase 3 WAL integration test ----
+add_executable(test_wal_hooks test_wal_hooks.cpp)
+target_link_libraries(test_wal_hooks blinkhash blinkhash_wal pthread)
 ## factor analysis
 #add_executable(baseline_ timestamp.cpp)
 #target_link_libraries(baseline_ baseline pthread)

@@ -97,6 +97,7 @@ test/range: test/CMakeFiles/range.dir/range.cpp.o
 test/range: test/CMakeFiles/range.dir/build.make
 test/range: lib/libblinkhash.a
 test/range: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/range: wal/libblinkhash_wal.a
 test/range: test/CMakeFiles/range.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable range"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/range.dir/link.txt --verbose=$(VERBOSE)

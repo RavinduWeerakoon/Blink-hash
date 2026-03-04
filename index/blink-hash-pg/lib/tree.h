@@ -5,6 +5,7 @@
 #include "lnode.h"
 #include "Epoche.h"
 #include "Epoche.cpp"
+#include "wal_emitter.h"
 #include <queue>
 #include <mutex>
 #include <condition_variable>
@@ -27,6 +28,7 @@ class btree_t{
 
 	btree_t(){
     root = static_cast<node_t*>(new lnode_hash_t<Key_t, Value_t>());
+    root->node_id = WAL::alloc_node_id();
     #ifndef FINGERPRINT
     memset(&EMPTY<Key_t>, 0, sizeof(EMPTY<Key_t>));
     #endif

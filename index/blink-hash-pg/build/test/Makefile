@@ -371,6 +371,20 @@ bench_wal_commit_latency/fast:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/bench_wal_commit_latency.dir/build.make test/CMakeFiles/bench_wal_commit_latency.dir/build
 .PHONY : bench_wal_commit_latency/fast
 
+# Convenience name for target.
+test/CMakeFiles/test_wal_hooks.dir/rule:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_wal_hooks.dir/rule
+.PHONY : test/CMakeFiles/test_wal_hooks.dir/rule
+
+# Convenience name for target.
+test_wal_hooks: test/CMakeFiles/test_wal_hooks.dir/rule
+.PHONY : test_wal_hooks
+
+# fast build rule for target.
+test_wal_hooks/fast:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/build
+.PHONY : test_wal_hooks/fast
+
 bench_convert_count.o: bench_convert_count.cpp.o
 .PHONY : bench_convert_count.o
 
@@ -617,6 +631,30 @@ test_wal_e2e.cpp.s:
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_e2e.dir/build.make test/CMakeFiles/test_wal_e2e.dir/test_wal_e2e.cpp.s
 .PHONY : test_wal_e2e.cpp.s
 
+test_wal_hooks.o: test_wal_hooks.cpp.o
+.PHONY : test_wal_hooks.o
+
+# target to build an object file
+test_wal_hooks.cpp.o:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/test_wal_hooks.cpp.o
+.PHONY : test_wal_hooks.cpp.o
+
+test_wal_hooks.i: test_wal_hooks.cpp.i
+.PHONY : test_wal_hooks.i
+
+# target to preprocess a source file
+test_wal_hooks.cpp.i:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/test_wal_hooks.cpp.i
+.PHONY : test_wal_hooks.cpp.i
+
+test_wal_hooks.s: test_wal_hooks.cpp.s
+.PHONY : test_wal_hooks.s
+
+# target to generate assembly for a file
+test_wal_hooks.cpp.s:
+	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_wal_hooks.dir/build.make test/CMakeFiles/test_wal_hooks.dir/test_wal_hooks.cpp.s
+.PHONY : test_wal_hooks.cpp.s
+
 test_wal_record.o: test_wal_record.cpp.o
 .PHONY : test_wal_record.o
 
@@ -713,6 +751,7 @@ help:
 	@echo "... test"
 	@echo "... test_string"
 	@echo "... test_wal_e2e"
+	@echo "... test_wal_hooks"
 	@echo "... test_wal_record"
 	@echo "... test_wal_ring"
 	@echo "... timestamp"
@@ -746,6 +785,9 @@ help:
 	@echo "... test_wal_e2e.o"
 	@echo "... test_wal_e2e.i"
 	@echo "... test_wal_e2e.s"
+	@echo "... test_wal_hooks.o"
+	@echo "... test_wal_hooks.i"
+	@echo "... test_wal_hooks.s"
 	@echo "... test_wal_record.o"
 	@echo "... test_wal_record.i"
 	@echo "... test_wal_record.s"

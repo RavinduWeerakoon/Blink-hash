@@ -47,7 +47,7 @@ endif()
 
 add_library(adapt STATIC ${Blinkhash_SRC})
 target_compile_definitions(adapt PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION)
-target_link_libraries(adapt TBB::tbb)
+target_link_libraries(adapt TBB::tbb blinkhash_wal)
 INSTALL(TARGETS adapt 
 	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
 
@@ -55,7 +55,7 @@ INSTALL(TARGETS adapt
 
 add_library(blinkhash STATIC ${Blinkhash_SRC})
 target_compile_definitions(blinkhash PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION)
-target_link_libraries(blinkhash TBB::tbb)
+target_link_libraries(blinkhash TBB::tbb blinkhash_wal)
 INSTALL(TARGETS blinkhash 
 	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
 
@@ -63,6 +63,6 @@ add_library(blinkhash_async STATIC ${Blinkhash_SRC})
 target_compile_definitions(blinkhash_async PUBLIC
     ${BLINKHASH_EXTRA_DEFS}
     -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION -DASYNC_ADAPT)
-target_link_libraries(blinkhash_async TBB::tbb)
+target_link_libraries(blinkhash_async TBB::tbb blinkhash_wal)
 INSTALL(TARGETS blinkhash_async
     ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})

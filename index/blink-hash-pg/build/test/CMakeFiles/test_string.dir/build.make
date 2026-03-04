@@ -97,6 +97,7 @@ test/test_string: test/CMakeFiles/test_string.dir/test_string.cpp.o
 test/test_string: test/CMakeFiles/test_string.dir/build.make
 test/test_string: lib/libblinkhash.a
 test/test_string: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/test_string: wal/libblinkhash_wal.a
 test/test_string: test/CMakeFiles/test_string.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_string"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_string.dir/link.txt --verbose=$(VERBOSE)

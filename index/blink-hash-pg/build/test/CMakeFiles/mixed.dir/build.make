@@ -97,6 +97,7 @@ test/mixed: test/CMakeFiles/mixed.dir/mixed.cpp.o
 test/mixed: test/CMakeFiles/mixed.dir/build.make
 test/mixed: lib/libblinkhash.a
 test/mixed: /opt/homebrew/opt/tbb/lib/libtbb.12.17.dylib
+test/mixed: wal/libblinkhash_wal.a
 test/mixed: test/CMakeFiles/mixed.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable mixed"
 	cd /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/test && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mixed.dir/link.txt --verbose=$(VERBOSE)
