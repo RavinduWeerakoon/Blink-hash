@@ -8,13 +8,16 @@
 #include "postgres.h"
 #include "access/genam.h"
 #include "access/heapam.h"
+#include "access/table.h"
 #include "access/tableam.h"
 #include "catalog/index.h"
 #include "catalog/pg_type.h"
+#include "executor/tuptable.h"
 #include "miscadmin.h"
 #include "storage/bufmgr.h"
 #include "utils/memutils.h"
 #include "utils/rel.h"
+#include "utils/snapmgr.h"
 
 
 void
@@ -123,4 +126,99 @@ blinkhash_ambuild(Relation heapRelation,
     result->index_tuples = bs.tuples_inserted;
 
     return result;
+}
+
+/*
+ * bh_lazy_rebuild --- Rebuild the in-memory tree from the heap.
+ *
+ * Called when a backend opens the index for the first time and finds
+ * rd_amcache == NULL (i.e. the tree was built by a different backend).
+ * Scans the heap with the active snapshot, inserts every live tuple
+ * into a fresh tree, then stores it in rd_amcache for subsequent use.
+ *
+ * This is O(N) but amortised: it happens at most once per backend
+ * per index per relcache lifetime.
+ */
+BHIndexState *
+bh_lazy_rebuild(Relation indexRelation)
+{
+    Oid        heapOid;
+    Relation   heapRel;
+    TupleTableSlot *slot;
+    TableScanDesc   hscan;
+    BHIndexState   *state;
+    Oid        key_typid;
+    char       key_class;
+    void      *tree;
+    void      *ti;
+    int        attrno;
+
+    /* Already populated? */
+    if (indexRelation->rd_amcache != NULL)
+        return (BHIndexState *) indexRelation->rd_amcache;
+
+    /* Determine key type from the first indexed column */
+    key_typid = TupleDescAttr(
+        RelationGetDescr(indexRelation), 0)->atttypid;
+    key_class = bh_classify_type(key_typid);
+
+    /* Heap attribute number for the indexed column (1-based) */
+    attrno = indexRelation->rd_index->indkey.values[0];
+
+    /* Create an empty tree */
+    tree = bh_tree_create(key_class);
+    ti   = bh_get_thread_info(tree, key_class);
+
+    /* Open the parent heap */
+    heapOid = IndexGetRelation(RelationGetRelid(indexRelation), false);
+    heapRel = table_open(heapOid, AccessShareLock);
+
+    /* Scan heap with the active snapshot */
+    slot  = table_slot_create(heapRel, NULL);
+    hscan = table_beginscan(heapRel, GetActiveSnapshot(), 0, NULL);
+
+    while (table_scan_getnextslot(hscan, ForwardScanDirection, slot))
+    {
+        Datum  val;
+        bool   isnull;
+        uint64 packed_tid;
+
+        val = slot_getattr(slot, attrno, &isnull);
+        if (isnull)
+            continue;
+
+        packed_tid = bh_tid_to_value(&slot->tts_tid);
+
+        if (key_class == 'i')
+        {
+            bool ok;
+            uint64 key = bh_datum_to_key64(val, key_typid, &ok);
+            if (ok)
+                bh_insert(tree, 'i', &key, sizeof(key),
+                          packed_tid, ti);
+        }
+        else
+        {
+            char key_buf[32];
+            bh_datum_to_string_key(val, key_typid, key_buf, 32);
+            bh_insert(tree, 's', key_buf, 32,
+                      packed_tid, ti);
+        }
+    }
+
+    table_endscan(hscan);
+    ExecDropSingleTupleTableSlot(slot);
+    table_close(heapRel, AccessShareLock);
+
+    /* Store in rd_amcache */
+    state = (BHIndexState *)
+        MemoryContextAllocZero(indexRelation->rd_indexcxt,
+                               sizeof(BHIndexState));
+    state->tree        = tree;
+    state->thread_info = ti;
+    state->key_class   = key_class;
+    state->key_typid   = key_typid;
+    indexRelation->rd_amcache = state;
+
+    return state;
 }

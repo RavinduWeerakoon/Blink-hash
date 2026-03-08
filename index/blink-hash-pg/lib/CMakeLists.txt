@@ -54,7 +54,7 @@ INSTALL(TARGETS adapt
 
 
 add_library(blinkhash STATIC ${Blinkhash_SRC})
-target_compile_definitions(blinkhash PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION)
+target_compile_definitions(blinkhash PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING -DLINKED)
 target_link_libraries(blinkhash TBB::tbb blinkhash_wal)
 INSTALL(TARGETS blinkhash 
 	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})

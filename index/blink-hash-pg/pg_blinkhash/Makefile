@@ -37,4 +37,4 @@ include $(PGXS)
 
 # -- Compile C++ bridge with clang++ --
 src/blinkhash_core.o: src/blinkhash_core.cpp
-	$(CXX) -std=c++17 -fPIC $(PG_CPPFLAGS) -I$(shell $(PG_CONFIG) --includedir-server) -I../lib -I../wal -I$(shell brew --prefix tbb)/include -DFINGERPRINT -DSAMPLING -DLINKED -DADAPTATION -c -o $@ $<
+	$(CXX) -std=c++17 -fPIC $(PG_CPPFLAGS) -I$(shell $(PG_CONFIG) --includedir-server) -I../lib -I../wal -I$(shell brew --prefix tbb)/include -DFINGERPRINT -DSAMPLING -DLINKED -c -o $@ $<

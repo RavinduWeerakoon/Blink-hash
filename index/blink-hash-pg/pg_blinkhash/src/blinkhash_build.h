@@ -36,6 +36,14 @@ typedef struct BHBuildState {
     Oid     key_typid;
 } BHBuildState;
 
+/*
+ * Lazy rebuild: populate the in-memory tree from the heap on first
+ * access in a new backend.  Returns the BHIndexState stored in
+ * rd_amcache, or NULL if the heap is not accessible.
+ */
+struct BHIndexState;  /* forward declaration (defined in blinkhash_core.h) */
+struct BHIndexState *bh_lazy_rebuild(Relation indexRelation);
+
 /* Declared in blinkhash_am.h — implementations in blinkhash_build.c */
 
 #ifdef __cplusplus

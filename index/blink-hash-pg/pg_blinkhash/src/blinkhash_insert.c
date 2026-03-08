@@ -1,6 +1,7 @@
 
 
 #include "blinkhash_am.h"
+#include "blinkhash_build.h"
 #include "blinkhash_core.h"
 #include "blinkhash_utils.h"
 #ifdef BH_USE_PG_WAL
@@ -14,7 +15,7 @@
 
 /*
  * Ensure the index has a BHIndexState in rd_amcache.
- * If this is the first use after a relcache reset, create it.
+ * If this is the first use after a relcache reset, rebuild from heap.
  */
 static BHIndexState *
 ensure_index_state(Relation indexRelation)
@@ -23,24 +24,8 @@ ensure_index_state(Relation indexRelation)
     if (state != NULL)
         return state;
 
-    /* First-time init: need to create the tree */
-    Oid key_typid = TupleDescAttr(
-        RelationGetDescr(indexRelation), 0)->atttypid;
-    char key_class = bh_classify_type(key_typid);
-
-    void *tree = bh_tree_create(key_class);
-    void *ti   = bh_get_thread_info(tree, key_class);
-
-    state = (BHIndexState *)
-        MemoryContextAllocZero(indexRelation->rd_indexcxt,
-                               sizeof(BHIndexState));
-    state->tree        = tree;
-    state->thread_info = ti;
-    state->key_class   = key_class;
-    state->key_typid   = key_typid;
-    indexRelation->rd_amcache = state;
-
-    return state;
+    /* Tree missing in this backend — rebuild from the heap */
+    return bh_lazy_rebuild(indexRelation);
 }
 
 bool

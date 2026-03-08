@@ -756,7 +756,10 @@ int btree_t<Key_t, Value_t>::range_lookup(Key_t min_key, int range, Value_t* buf
 	    return ret;
 
 	// reaches to the rightmost leaf
-	if(!sibling) break;
+	if(!sibling) {
+	    count = ret;
+	    break;
+	}
 
 	auto sibling_vstart = sibling->try_readlock(need_restart);
 	if(need_restart)
