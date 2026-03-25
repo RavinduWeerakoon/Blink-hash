@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <stddef.h>
+#include <cstdint>
 namespace BLINK_HASH{
 
 inline size_t standard(const void* _ptr, size_t _len, size_t _seed=static_cast<size_t>(0xc70f6907UL));

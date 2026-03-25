@@ -1,6 +1,19 @@
 add_executable(test test.cpp)
 target_link_libraries(test blinkhash pthread)
 
+# ---- Bucket metadata / split-pruning invariant tests ----
+add_executable(test_bucket_metadata test_bucket_metadata.cpp)
+target_link_libraries(test_bucket_metadata blinkhash pthread)
+
+# ---- Metadata-driven split pruning tests ----
+add_executable(test_split_pruning test_split_pruning.cpp)
+target_link_libraries(test_split_pruning blinkhash pthread)
+
+# Eager-migration (non-LINKED) variant — shows full metadata classification
+# trace in terminal log (PURE-LEFT / PURE-RIGHT / MIXED per bucket).
+add_executable(test_split_pruning_eager test_split_pruning.cpp)
+target_link_libraries(test_split_pruning_eager blinkhash_eager pthread)
+
 add_executable(range range.cpp)
 target_link_libraries(range blinkhash pthread)
 

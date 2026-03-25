@@ -59,6 +59,14 @@ target_link_libraries(blinkhash TBB::tbb blinkhash_wal)
 INSTALL(TARGETS blinkhash 
 	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
 
+# Non-LINKED (eager-migration) variant — used by test_split_pruning_eager to
+# demonstrate that bucket metadata actively drives split() routing decisions.
+add_library(blinkhash_eager STATIC ${Blinkhash_SRC})
+target_compile_definitions(blinkhash_eager PUBLIC ${BLINKHASH_EXTRA_DEFS} -DFINGERPRINT -DSAMPLING)
+target_link_libraries(blinkhash_eager TBB::tbb blinkhash_wal_eager)
+INSTALL(TARGETS blinkhash_eager
+	ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR})
+
 add_library(blinkhash_async STATIC ${Blinkhash_SRC})
 target_compile_definitions(blinkhash_async PUBLIC
     ${BLINKHASH_EXTRA_DEFS}

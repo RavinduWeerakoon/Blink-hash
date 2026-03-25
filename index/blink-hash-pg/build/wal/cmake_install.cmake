@@ -1,4 +1,4 @@
-# Install script for directory: /Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/wal
+# Install script for directory: /workspaces/Blink-hash/index/blink-hash-pg/wal
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -12,7 +12,7 @@ if(NOT DEFINED CMAKE_INSTALL_CONFIG_NAME)
     string(REGEX REPLACE "^[^A-Za-z0-9_]+" ""
            CMAKE_INSTALL_CONFIG_NAME "${BUILD_TYPE}")
   else()
-    set(CMAKE_INSTALL_CONFIG_NAME "RELEASE")
+    set(CMAKE_INSTALL_CONFIG_NAME "Debug")
   endif()
   message(STATUS "Install configuration: \"${CMAKE_INSTALL_CONFIG_NAME}\"")
 endif()
@@ -27,35 +27,42 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set path to fallback-tool for dependency-resolution.
+# Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/libblinkhash_wal.a")
+   "/workspaces/Blink-hash/index/blink-hash-pg/libblinkhash_wal.a")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg" TYPE STATIC_LIBRARY FILES "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/libblinkhash_wal.a")
-  if(EXISTS "$ENV{DESTDIR}/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/libblinkhash_wal.a" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/libblinkhash_wal.a")
-    execute_process(COMMAND "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib" "$ENV{DESTDIR}/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/libblinkhash_wal.a")
-  endif()
+  file(INSTALL DESTINATION "/workspaces/Blink-hash/index/blink-hash-pg" TYPE STATIC_LIBRARY FILES "/workspaces/Blink-hash/index/blink-hash-pg/build/wal/libblinkhash_wal.a")
 endif()
 
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
-       "${CMAKE_INSTALL_MANIFEST_FILES}")
-if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Users/shakir/Desktop/blinkhash/Blink-hash/index/blink-hash-pg/build/wal/install_local_manifest.txt"
-     "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
+   "/workspaces/Blink-hash/index/blink-hash-pg/libblinkhash_wal_eager.a")
+  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
+    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
+  endif()
+  file(INSTALL DESTINATION "/workspaces/Blink-hash/index/blink-hash-pg" TYPE STATIC_LIBRARY FILES "/workspaces/Blink-hash/index/blink-hash-pg/build/wal/libblinkhash_wal_eager.a")
 endif()
+

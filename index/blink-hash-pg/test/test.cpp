@@ -7,6 +7,8 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <mutex>
+#include <sched.h>
 
 using Key_t = uint64_t;
 using Value_t = uint64_t;
@@ -23,29 +25,44 @@ inline uint64_t _Rdtsc(){
 #endif
 }
 
-static int core_alloc_map_hyper[] = {
-  0, 2, 4, 6, 8, 10, 12, 14,
-  16, 18, 20, 22, 24, 26, 28, 30,
-  32, 34, 36, 38, 40, 42, 44, 46,
-  48, 50, 52, 54, 56, 58, 60, 62,
-  1, 3, 5, 7 ,9, 11, 13, 15,
-  17, 19, 21, 23, 25, 27, 29, 31,
-  33, 35, 37, 39, 41, 43, 45, 47,
-  49, 51, 53, 55, 57, 59, 61, 63
-};
+static const std::vector<int>& allowed_cpus(){
+    static std::once_flag init_once;
+    static std::vector<int> cpus;
 
-constexpr static size_t MAX_CORE_NUM = 64;
+    std::call_once(init_once, []() {
+        cpu_set_t mask;
+        CPU_ZERO(&mask);
+        if(sched_getaffinity(0, sizeof(mask), &mask) == 0){
+            for(int cpu = 0; cpu < CPU_SETSIZE; ++cpu){
+                if(CPU_ISSET(cpu, &mask)){
+                    cpus.push_back(cpu);
+                }
+            }
+        }
+    });
+
+    return cpus;
+}
 
 inline void pin_to_core(size_t thread_id){
 #ifdef __linux__
+    const auto& cpus = allowed_cpus();
+    if(cpus.empty()){
+        return;
+    }
+
     cpu_set_t cpu_set;
     CPU_ZERO(&cpu_set);
-    size_t core_id = thread_id % MAX_CORE_NUM;
-    CPU_SET(core_alloc_map_hyper[core_id], &cpu_set);
+    int target_cpu = cpus[thread_id % cpus.size()];
+    CPU_SET(target_cpu, &cpu_set);
+
     int ret = pthread_setaffinity_np(pthread_self(), sizeof(cpu_set), &cpu_set);
     if(ret != 0){
-        std::cerr << __func__ << ": pthread_set_affinity_np returns non-zero" << std::endl;
-        exit(0);
+        static std::once_flag warn_once;
+        std::call_once(warn_once, [ret]() {
+            std::cerr << __func__ << ": pthread_setaffinity_np failed (ret=" << ret
+                      << "), continuing without strict pinning" << std::endl;
+        });
     }
 #else
     (void)thread_id;  // thread affinity not supported on this platform

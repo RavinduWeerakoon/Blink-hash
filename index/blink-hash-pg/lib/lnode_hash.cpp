@@ -197,8 +197,10 @@ lnode_hash_t<Key_t, Value_t>* lnode_hash_t<Key_t, Value_t>::split(Key_t& split_k
     #else // non-sampling
     Key_t temp[cardinality*entry_num];
     int valid_num = 0;
-    for(int j=0; j<cardinality; j++)
+    for(int j=0; j<cardinality; j++){
+	if(bucket[j].live_count == 0) continue; // skip empty buckets using metadata
 	bucket[j].collect_all_keys(temp, valid_num, empty);
+    }
     #endif
 #else
     #ifdef SAMPLING // entry-based sampling
@@ -211,8 +213,10 @@ lnode_hash_t<Key_t, Value_t>* lnode_hash_t<Key_t, Value_t>::split(Key_t& split_k
     #else // non-sampling 
     Key_t temp[cardinality*entry_num];
     int valid_num = 0;
-    for(int j=0; j<cardinality; j++)
+    for(int j=0; j<cardinality; j++){
+	if(bucket[j].live_count == 0) continue; // skip empty buckets using metadata
 	bucket[j].collect_all_keys(temp, valid_num);
+    }
     #endif
 #endif
 
@@ -413,6 +417,25 @@ lnode_hash_t<Key_t, Value_t>* lnode_hash_t<Key_t, Value_t>::split(Key_t& split_k
     #else
     // migrate keys
     for(int j=0; j<cardinality; j++){
+	// --- Split pruning via bucket metadata ---
+	// Left bucket: max_key <= split_key means all entries stay in current node
+	if(bucket[j].live_count == 0 || bucket[j].max_key <= split_key)
+	    continue;
+	// Right bucket: min_key > split_key means all entries go to new node — bulk copy
+	if(split_key < bucket[j].min_key){
+	    memcpy(new_right->bucket[j].entry, bucket[j].entry,
+		   sizeof(entry_t<Key_t, Value_t>) * entry_num);
+	    #ifdef FINGERPRINT
+	    memcpy(new_right->bucket[j].fingerprints, bucket[j].fingerprints,
+		   sizeof(uint8_t) * entry_num);
+	    memset(bucket[j].fingerprints, 0, sizeof(uint8_t) * entry_num);
+	    #else
+	    for(int i = 0; i < entry_num; i++)
+		bucket[j].entry[i].key = EMPTY<Key_t>;
+	    #endif
+	    continue;
+	}
+	// Mixed bucket: min_key <= split_key < max_key — scan entries individually
         #ifdef FINGERPRINT
 	#ifdef AVX_256
 	__m256i fingerprints_ = _mm256_loadu_si256(reinterpret_cast<__m256i*>(bucket[j].fingerprints));
@@ -534,6 +557,16 @@ lnode_hash_t<Key_t, Value_t>* lnode_hash_t<Key_t, Value_t>::split(Key_t& split_k
     #endif
 
     PROCEED:
+    // Recompute bucket metadata for both split halves after migration.
+    // Only needed for the non-LINKED path where all entries are migrated
+    // eagerly during split. The LINKED path recomputes lazily inside
+    // stabilize_bucket once each bucket's lazy migration is finalized.
+    #ifndef LINKED
+    for(int j = 0; j < (int)cardinality; j++){
+	bucket[j].recompute_meta();
+	new_right->bucket[j].recompute_meta();
+    }
+    #endif
     auto sibling = static_cast<lnode_t<Key_t, Value_t>*>(this->sibling_ptr);
     this->sibling_ptr = new_right;
     if(sibling){
@@ -991,6 +1024,8 @@ bool lnode_hash_t<Key_t, Value_t>::stabilize_all(uint64_t version){
 		}
 	    }
 	    #endif
+	    bucket[j].recompute_meta();
+	    left_bucket->recompute_meta();
 	    bucket[j].state = bucket_t<Key_t, Value_t>::STABLE;
 	    left_bucket->state = bucket_t<Key_t, Value_t>::STABLE;
 	    left_bucket->unlock();
@@ -1048,6 +1083,8 @@ bool lnode_hash_t<Key_t, Value_t>::stabilize_all(uint64_t version){
 		}
 	    }
 	    #endif
+	    bucket[j].recompute_meta();
+	    right_bucket->recompute_meta();
 	    bucket[j].state = bucket_t<Key_t, Value_t>::STABLE;
 	    right_bucket->state = bucket_t<Key_t, Value_t>::STABLE;
 	    right_bucket->unlock();
@@ -1133,6 +1170,8 @@ bool lnode_hash_t<Key_t, Value_t>::stabilize_bucket(int loc){
 		}
 	    }
 	    #endif
+	    bucket[loc].recompute_meta();
+	    left_bucket->recompute_meta();
 	    bucket[loc].state = bucket_t<Key_t, Value_t>::STABLE;
 	    left_bucket->state = bucket_t<Key_t, Value_t>::STABLE;
 	    left_bucket->unlock();
@@ -1207,6 +1246,8 @@ bool lnode_hash_t<Key_t, Value_t>::stabilize_bucket(int loc){
 		}
 	    }
 	    #endif
+	    bucket[loc].recompute_meta();
+	    right_bucket->recompute_meta();
 	    bucket[loc].state = bucket_t<Key_t, Value_t>::STABLE;
 	    right_bucket->state = bucket_t<Key_t, Value_t>::STABLE;
 	    right_bucket->unlock();

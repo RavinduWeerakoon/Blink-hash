@@ -18,6 +18,9 @@ struct bucket_t{
     };
 
     std::atomic<uint32_t> lock;
+    uint8_t live_count;  // number of live (non-empty) entries
+    Key_t min_key;       // minimum key among live entries (valid when live_count > 0)
+    Key_t max_key;       // maximum key among live entries (valid when live_count > 0)
     #ifdef LINKED
     state_t state;
     #endif
@@ -27,6 +30,9 @@ struct bucket_t{
     entry_t<Key_t, Value_t> entry[entry_num];
 
     bucket_t(): lock(0){
+	live_count = 0;
+	min_key = Key_t{};
+	max_key = Key_t{};
 	#ifdef LINKED
 	state = STABLE;
 	#endif
@@ -82,6 +88,29 @@ struct bucket_t{
 	return version;
     }
 
+    // Recompute min_key, max_key, and live_count by scanning all entries.
+    // Called after bulk migrations (split, stabilize) that bypass insert/remove.
+    void recompute_meta(){
+	live_count = 0;
+	min_key = Key_t{};
+	max_key = Key_t{};
+	for(int i = 0; i < entry_num; i++){
+	    #ifdef FINGERPRINT
+	    if(fingerprints[i] != 0){
+	    #else
+	    if(entry[i].key != EMPTY<Key_t>){
+	    #endif
+		if(live_count == 0){
+		    min_key = entry[i].key;
+		    max_key = entry[i].key;
+		} else {
+		    if(entry[i].key < min_key) min_key = entry[i].key;
+		    if(max_key < entry[i].key) max_key = entry[i].key;
+		}
+		live_count++;
+	    }
+	}
+    }
 
 #ifdef FINGERPRINT
     #ifdef AVX_256
@@ -95,6 +124,9 @@ struct bucket_t{
 		fingerprints[i] = fingerprint;
 		entry[i].key = key;
 		entry[i].value = value;
+		if(live_count == 0){ min_key = key; max_key = key; }
+		else { if(key < min_key) min_key = key; if(max_key < key) max_key = key; }
+		live_count++;
 		return true;
 	    }
 	}
@@ -113,6 +145,9 @@ struct bucket_t{
 		    fingerprints[idx] = fingerprint;
 		    entry[idx].key = key;
 		    entry[idx].value = value;
+		    if(live_count == 0){ min_key = key; max_key = key; }
+		    else { if(key < min_key) min_key = key; if(max_key < key) max_key = key; }
+		    live_count++;
 		    return true;
 		}
 	    }
@@ -126,6 +161,9 @@ struct bucket_t{
 		fingerprints[i] = fingerprint;
 		entry[i].key = key;
 		entry[i].value = value;
+		if(live_count == 0){ min_key = key; max_key = key; }
+		else { if(key < min_key) min_key = key; if(max_key < key) max_key = key; }
+		live_count++;
 		return true;
 	    }
 	}
@@ -138,6 +176,9 @@ struct bucket_t{
 	    if(entry[i].key == EMPTY<Key_t>){
 		entry[i].key = key;
 		entry[i].value = value;
+		if(live_count == 0){ min_key = key; max_key = key; }
+		else { if(key < min_key) min_key = key; if(max_key < key) max_key = key; }
+		live_count++;
 		return true;
 	    }
 	}
@@ -374,6 +415,8 @@ struct bucket_t{
 	    if((bit & 0x1) == 1){
 		if(entry[i].key == key){
 		    fingerprints[i] = 0;
+		    if(live_count > 0) live_count--;
+		    if(live_count == 0){ min_key = Key_t{}; max_key = Key_t{}; }
 		    return true;
 		}
 	    }
@@ -392,6 +435,8 @@ struct bucket_t{
 		    auto idx = m*16 + i;
 		    if(entry[idx].key == key){
 			fingerprints[idx] = 0;
+			if(live_count > 0) live_count--;
+			if(live_count == 0){ min_key = Key_t{}; max_key = Key_t{}; }
 			return true;
 		    }
 		}
@@ -405,6 +450,8 @@ struct bucket_t{
 	    if(fingerprints[i] == fingerprint){
 		if(entry[i].key == key){
 		    fingerprints[i] = 0;
+		    if(live_count > 0) live_count--;
+		    if(live_count == 0){ min_key = Key_t{}; max_key = Key_t{}; }
 		    return true;
 		}
 	    }
@@ -417,6 +464,8 @@ struct bucket_t{
 	for(int i=0; i<entry_num; i++){
 	    if(entry[i].key == key){
 		entry[i].key = EMPTY<Key_t>;
+		if(live_count > 0) live_count--;
+		if(live_count == 0){ min_key = Key_t{}; max_key = Key_t{}; }
 		return true;
 	    }
 	}
