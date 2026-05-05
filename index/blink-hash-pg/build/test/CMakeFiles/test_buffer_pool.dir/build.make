@@ -92,6 +92,7 @@ test_buffer_pool_EXTERNAL_OBJECTS =
 
 test/test_buffer_pool: test/CMakeFiles/test_buffer_pool.dir/test_buffer_pool.cpp.o
 test/test_buffer_pool: test/CMakeFiles/test_buffer_pool.dir/build.make
+test/test_buffer_pool: wal/libblinkhash_wal.a
 test/test_buffer_pool: lib/libblinkhash.a
 test/test_buffer_pool: wal/libblinkhash_wal.a
 test/test_buffer_pool: /usr/lib/x86_64-linux-gnu/liburing.so

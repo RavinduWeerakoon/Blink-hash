@@ -20,7 +20,7 @@ SRCS_C += src/blinkhash_wal.c
 OBJS = $(SRCS_C:.c=.o)
 
 # -- C++ bridge source --
-SRCS_CXX = src/blinkhash_core.cpp
+SRCS_CXX = src/blinkhash_core.cpp src/shared_mmap.cpp
 CXX_OBJS = $(SRCS_CXX:.cpp=.o)
 OBJS += $(CXX_OBJS)
 
@@ -30,6 +30,10 @@ SHLIB_LINK += -L../build/lib -L../build/wal -L/opt/homebrew/opt/tbb/lib -lblinkh
 # -- Include paths --
 PG_CPPFLAGS += -I../lib -I../wal -Isrc
 PG_CPPFLAGS += -DBH_USE_PG_WAL
+
+ifdef USE_BUFFER_POOL
+PG_CPPFLAGS += -DBH_USE_BUFFER_POOL
+endif
 # -- PGXS --
 PG_CONFIG ?= pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)
@@ -38,3 +42,7 @@ include $(PGXS)
 # -- Compile C++ bridge with clang++ --
 src/blinkhash_core.o: src/blinkhash_core.cpp
 	$(CXX) -std=c++17 -fPIC $(PG_CPPFLAGS) -I$(shell $(PG_CONFIG) --includedir-server) -I../lib -I../wal -I$(shell brew --prefix tbb)/include -DFINGERPRINT -DSAMPLING -DLINKED -c -o $@ $<
+
+ifdef USE_SHARED_MEMORY
+PG_CPPFLAGS += -DBH_USE_SHARED_MEMORY
+endif

@@ -92,6 +92,7 @@ test_wal_hooks_EXTERNAL_OBJECTS =
 
 test/test_wal_hooks: test/CMakeFiles/test_wal_hooks.dir/test_wal_hooks.cpp.o
 test/test_wal_hooks: test/CMakeFiles/test_wal_hooks.dir/build.make
+test/test_wal_hooks: wal/libblinkhash_wal.a
 test/test_wal_hooks: lib/libblinkhash.a
 test/test_wal_hooks: wal/libblinkhash_wal.a
 test/test_wal_hooks: /usr/lib/x86_64-linux-gnu/liburing.so

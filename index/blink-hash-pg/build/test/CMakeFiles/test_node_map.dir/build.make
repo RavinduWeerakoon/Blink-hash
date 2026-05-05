@@ -92,6 +92,7 @@ test_node_map_EXTERNAL_OBJECTS =
 
 test/test_node_map: test/CMakeFiles/test_node_map.dir/test_node_map.cpp.o
 test/test_node_map: test/CMakeFiles/test_node_map.dir/build.make
+test/test_node_map: wal/libblinkhash_wal.a
 test/test_node_map: lib/libblinkhash.a
 test/test_node_map: wal/libblinkhash_wal.a
 test/test_node_map: /usr/lib/x86_64-linux-gnu/liburing.so

@@ -92,6 +92,7 @@ test_wal_recovery_EXTERNAL_OBJECTS =
 
 test/test_wal_recovery: test/CMakeFiles/test_wal_recovery.dir/test_wal_recovery.cpp.o
 test/test_wal_recovery: test/CMakeFiles/test_wal_recovery.dir/build.make
+test/test_wal_recovery: wal/libblinkhash_wal.a
 test/test_wal_recovery: lib/libblinkhash.a
 test/test_wal_recovery: wal/libblinkhash_wal.a
 test/test_wal_recovery: /usr/lib/x86_64-linux-gnu/liburing.so

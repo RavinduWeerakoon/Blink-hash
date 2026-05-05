@@ -92,6 +92,7 @@ test_wal_checkpoint_EXTERNAL_OBJECTS =
 
 test/test_wal_checkpoint: test/CMakeFiles/test_wal_checkpoint.dir/test_wal_checkpoint.cpp.o
 test/test_wal_checkpoint: test/CMakeFiles/test_wal_checkpoint.dir/build.make
+test/test_wal_checkpoint: wal/libblinkhash_wal.a
 test/test_wal_checkpoint: lib/libblinkhash.a
 test/test_wal_checkpoint: wal/libblinkhash_wal.a
 test/test_wal_checkpoint: /usr/lib/x86_64-linux-gnu/liburing.so

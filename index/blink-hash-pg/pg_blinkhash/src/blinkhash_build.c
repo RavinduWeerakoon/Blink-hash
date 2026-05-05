@@ -1,3 +1,4 @@
+#include "shared_mmap.h"
 
 
 #include "blinkhash_am.h"
@@ -79,8 +80,16 @@ blinkhash_ambuild(Relation heapRelation,
     char key_class = bh_classify_type(key_typid);
 
     /* Create the tree */
-    void *tree = bh_tree_create(key_class);
-    void *ti   = bh_get_thread_info(tree, key_class);
+    bh_shared_mmap_init(1024ULL * 1024 * 1024); /* 1 GB Arena */ 
+    
+    bh_global_lock();
+    void *tree = bh_get_global_tree();
+    if (tree == NULL) {
+        tree = bh_tree_create(key_class);
+        bh_set_global_tree(tree);
+    }
+    void *ti = bh_get_thread_info(tree, key_class);
+    bh_global_unlock();
 
     BHBuildState bs;
     bs.tree           = tree;
@@ -165,9 +174,31 @@ bh_lazy_rebuild(Relation indexRelation)
     /* Heap attribute number for the indexed column (1-based) */
     attrno = indexRelation->rd_index->indkey.values[0];
 
+    bh_shared_mmap_init(1024ULL * 1024 * 1024); // 1 GB setup
+    bh_global_lock();
+    tree = bh_get_global_tree();
+
+    if (tree != NULL) {
+        ti = bh_get_thread_info(tree, key_class);
+        bh_global_unlock();
+
+        state = (BHIndexState *)
+            MemoryContextAllocZero(indexRelation->rd_indexcxt,
+                                   sizeof(BHIndexState));
+        state->tree        = tree;
+        state->thread_info = ti;
+        state->key_class   = key_class;
+        state->key_typid   = key_typid;
+        indexRelation->rd_amcache = state;
+        return state;
+    }
+
     /* Create an empty tree */
     tree = bh_tree_create(key_class);
     ti   = bh_get_thread_info(tree, key_class);
+    
+    bh_set_global_tree(tree);
+    bh_global_unlock();
 
     /* Open the parent heap */
     heapOid = IndexGetRelation(RelationGetRelid(indexRelation), false);

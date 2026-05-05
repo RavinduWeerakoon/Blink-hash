@@ -6,5 +6,5 @@ CXX_DEFINES = -DADAPTATION -DAVX_128 -DFINGERPRINT -DHAS_IO_URING -DLINKED -DSAM
 
 CXX_INCLUDES = -I/workspaces/Blink-hash/index/blink-hash-pg/lib -I/workspaces/Blink-hash/index/blink-hash-pg/wal -I/workspaces/Blink-hash/index/blink-hash-pg/pg_blinkhash/src -I/workspaces/Blink-hash/index/blink-hash-pg/wal/../lib
 
-CXX_FLAGS = -std=c++17 -pthread -march=native -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free -faligned-new=64 -g
+CXX_FLAGS = -std=c++17 -fPIC -pthread -march=native -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free -faligned-new=64 -g
 

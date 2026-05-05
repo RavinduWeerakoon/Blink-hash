@@ -108,6 +108,7 @@ test_pg_wal_bridge_EXTERNAL_OBJECTS =
 test/test_pg_wal_bridge: test/CMakeFiles/test_pg_wal_bridge.dir/test_pg_wal_bridge.cpp.o
 test/test_pg_wal_bridge: test/CMakeFiles/test_pg_wal_bridge.dir/__/pg_blinkhash/src/blinkhash_core.cpp.o
 test/test_pg_wal_bridge: test/CMakeFiles/test_pg_wal_bridge.dir/build.make
+test/test_pg_wal_bridge: wal/libblinkhash_wal.a
 test/test_pg_wal_bridge: lib/libblinkhash.a
 test/test_pg_wal_bridge: wal/libblinkhash_wal.a
 test/test_pg_wal_bridge: /usr/lib/x86_64-linux-gnu/liburing.so
